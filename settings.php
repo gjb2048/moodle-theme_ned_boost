@@ -23,12 +23,11 @@
  * @developer  G J Barnard - {@link http://about.me/gjbarnard} and
  *                           {@link http://moodle.org/user/profile.php?id=442195}
  */
-
 defined('MOODLE_INTERNAL') || die();
 
-$string['configtitle'] = 'NED Boost';
-$string['pluginname'] = 'NED Boost';
-$string['region-side-pre'] = 'Right';
+if ($ADMIN->fulltree) {
+    $settings = new theme_boost_admin_settingspage_tabs('themesettingned_boost', get_string('configtitle', 'theme_ned_boost'));
+    $page = new admin_settingpage('theme_ned_boost_format', get_string('formatsettings', 'theme_ned_boost'));
 
-// Settings.
-$string['formatsettings'] = 'Format';
+    $settings->add($page);
+}
