@@ -29,5 +29,57 @@ if ($ADMIN->fulltree) {
     $settings = new theme_boost_admin_settingspage_tabs('themesettingned_boost', get_string('configtitle', 'theme_ned_boost'));
     $page = new admin_settingpage('theme_ned_boost_format', get_string('formatsettings', 'theme_ned_boost'));
 
+    // Site / dashboard level.
+    $page->add(new admin_setting_heading('theme_ned_boost_sitedashboardlevelheading',
+        get_string('sitedashboardlevel', 'theme_ned_boost'), ''));
+
+    // Block width.
+    $name = 'theme_ned_boost/sitedashboardlevelblockwidth';
+    $title = get_string('blockwidth', 'theme_ned_boost');
+    $description = '';
+    $default = 300;
+    $setting = new admin_setting_configtext($name, $title, $description, $default, PARAM_INT);
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+
+    // Block positions.
+    $name = 'theme_ned_boost/sitedashboardlevelblockpositions';
+    $title = get_string('blockpositions', 'theme_ned_boost');
+    $description = '';
+    $choices = array(
+        1 => new lang_string('both', 'theme_ned_boost'),
+        2 => new lang_string('right', 'theme_ned_boost'),
+        3 => new lang_string('left', 'theme_ned_boost')
+    );
+    $default = 1;
+    $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+    $page->add($setting);
+
+    // Course level.
+    $page->add(new admin_setting_heading('theme_ned_boost_courselevelheading',
+        get_string('courselevel', 'theme_ned_boost'), ''));
+
+    // Block width.
+    $name = 'theme_ned_boost/courselevelblockwidth';
+    $title = get_string('blockwidth', 'theme_ned_boost');
+    $description = '';
+    $default = 300;
+    $setting = new admin_setting_configtext($name, $title, $description, $default, PARAM_INT);
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+
+    // Block positions.
+    $name = 'theme_ned_boost/courselevelblockpositions';
+    $title = get_string('blockpositions', 'theme_ned_boost');
+    $description = '';
+    $choices = array(
+        1 => new lang_string('both', 'theme_ned_boost'),
+        2 => new lang_string('right', 'theme_ned_boost'),
+        3 => new lang_string('left', 'theme_ned_boost')
+    );
+    $default = 1;
+    $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+    $page->add($setting);
+
     $settings->add($page);
 }

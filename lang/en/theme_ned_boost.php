@@ -31,4 +31,11 @@ $string['pluginname'] = 'NED Boost';
 $string['region-side-pre'] = 'Right';
 
 // Settings.
+$string['blockpositions'] = 'Block positions';
+$string['blockwidth'] = 'Block width';
+$string['both'] = 'Both';
+$string['courselevel'] = 'Course level';
 $string['formatsettings'] = 'Format';
+$string['left'] = 'Left';
+$string['right'] = 'Right';
+$string['sitedashboardlevel'] = 'Site/Dashboard level';
