@@ -53,6 +53,7 @@ if ($ADMIN->fulltree) {
     );
     $default = 1;
     $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+    $setting->set_updatedcallback('theme_reset_all_caches');
     $page->add($setting);
 
     // Course level.
@@ -79,6 +80,7 @@ if ($ADMIN->fulltree) {
     );
     $default = 1;
     $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+    $setting->set_updatedcallback('theme_reset_all_caches');
     $page->add($setting);
 
     $settings->add($page);

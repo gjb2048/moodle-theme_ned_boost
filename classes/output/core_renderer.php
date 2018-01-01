@@ -24,20 +24,25 @@
  *                           {@link http://moodle.org/user/profile.php?id=442195}
  */
 
-defined('MOODLE_INTERNAL') || die();
+namespace theme_ned_boost\output;
 
-$string['configtitle'] = 'NED Boost';
-$string['pluginname'] = 'NED Boost';
-$string['region-side-pre'] = 'Pre';
-$string['region-side-post'] = 'Post';
+defined('MOODLE_INTERNAL') || die;
 
-// Settings.
-$string['blockpositions'] = 'Block positions';
-$string['blockwidth'] = 'Block width';
-$string['blockwidthdesc'] = 'Block width in pixels';
-$string['both'] = 'Both';
-$string['courselevel'] = 'Course level';
-$string['formatsettings'] = 'Format';
-$string['left'] = 'Left';
-$string['right'] = 'Right';
-$string['sitedashboardlevel'] = 'Site/Dashboard level';
+
+class core_renderer extends \theme_boost\output\core_renderer {
+    public function get_block_postions() {
+        $position = 1; // Both.
+        switch ($this->page->pagelayout) {
+           case 'course':
+           case 'incourse':
+               $position = (!empty($this->page->theme->settings->courselevelblockpositions)) ? $this->page->theme->settings->courselevelblockpositions : $position;
+           break;
+           case 'frontpage':
+           case 'mydashboard':
+               $position = (!empty($this->page->theme->settings->sitedashboardlevelblockpositions)) ? $this->page->theme->settings->sitedashboardlevelblockpositions : $position;
+           break;
+        }
+
+        return $position;
+    }
+}

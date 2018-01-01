@@ -38,13 +38,30 @@ $extraclasses = [];
 if ($navdraweropen) {
     $extraclasses[] = 'drawer-open-left';
 }
+
 $bodyattributes = $OUTPUT->body_attributes($extraclasses);
 $blockslefthtml = $OUTPUT->blocks('side-pre');
 $hasleftblocks = strpos($blockslefthtml, 'data-block=') !== false;
 $blocksrighthtml = $OUTPUT->blocks('side-post');
 $hasrightblocks = strpos($blocksrighthtml, 'data-block=') !== false;
 $hasblocks = ($hasleftblocks || $hasrightblocks);
+
+switch ($OUTPUT->get_block_postions()) { // 1 is 'Both' - default for this layout.
+    case 2: // Right.
+        $blocksrighthtml = $blockslefthtml.$blocksrighthtml;
+        $blockslefthtml = '';
+        $hasrightblocks = $hasblocks;
+        $hasleftblocks = false;
+    break;
+    case 3: // Left.
+        $blockslefthtml = $blockslefthtml.$blocksrighthtml;
+        $blocksrighthtml = '';
+        $hasleftblocks = $hasblocks;
+        $hasrightblocks = false;
+    break;
+}
 $regionmainsettingsmenu = $OUTPUT->region_main_settings_menu();
+
 $templatecontext = [
     'sitename' => format_string($SITE->shortname, true, ['context' => context_course::instance(SITEID), "escape" => false]),
     'output' => $OUTPUT,
