@@ -40,6 +40,36 @@ $THEME->scss = function($theme) {
     return theme_ned_boost_get_main_scss_content($theme);
 };
 
+$THEME->layouts = [
+    // Main course page.
+    'course' => array(
+        'file' => 'layout.php',
+        'regions' => array('side-pre', 'side-post'),
+        'defaultregion' => 'side-pre',
+        'options' => array('langmenu' => true),
+    ),
+    // Part of course, typical for modules - default page layout if $cm specified in require_login().
+    'incourse' => array(
+        'file' => 'layout.php',
+        'regions' => array('side-pre'),
+        'defaultregion' => 'side-pre',
+    ),
+    // The site home page.
+    'frontpage' => array(
+        'file' => 'layout.php',
+        'regions' => array('side-pre'),
+        'defaultregion' => 'side-pre',
+        'options' => array('nonavbar' => true),
+    ),
+    // My dashboard page.
+    'mydashboard' => array(
+        'file' => 'layout.php',
+        'regions' => array('side-pre'),
+        'defaultregion' => 'side-pre',
+        'options' => array('nonavbar' => true, 'langmenu' => true),
+    )
+];
+
 $THEME->supportscssoptimisation = false;
 
 $THEME->rendererfactory = 'theme_overridden_renderer_factory';

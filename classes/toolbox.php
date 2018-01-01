@@ -50,6 +50,43 @@ class toolbox {
 
         $scss = theme_boost_get_main_scss_content($this->boostparent);
 
+        $scss .= $this->set_sitedashboard_block_width($theme);
+        $scss .= $this->set_course_block_width($theme);
+
+        return $scss;
+    }
+
+    protected function set_sitedashboard_block_width($theme) {
+        $scss = '';
+        if (!empty($theme->settings->sitedashboardlevelblockwidth)) {
+            $scss .= '.pagelayout-dashboard [data-region="blocks-column"],';
+            $scss .= '.pagelayout-frontpage [data-region="blocks-column"] {';
+            $scss .= 'width: '.$theme->settings->sitedashboardlevelblockwidth.'px;';
+            $scss .= '}';
+            $scss .= '.pagelayout-dashboard #region-main-settings-menu.has-blocks,';
+            $scss .= '.pagelayout-dashboard #region-main.has-blocks,';
+            $scss .= '.pagelayout-frontpage #region-main-settings-menu.has-blocks,';
+            $scss .= '.pagelayout-frontpage #region-main.has-blocks {';
+            $scss .= 'width: calc(100% - '.($theme->settings->sitedashboardlevelblockwidth + 30).'px);';
+            $scss .= '}';
+        }
+        return $scss;
+    }
+
+    protected function set_course_block_width($theme) {
+        $scss = '';
+        if (!empty($theme->settings->courselevelblockwidth)) {
+            $scss .= '.pagelayout-course [data-region="blocks-column"],';
+            $scss .= '.pagelayout-incourse [data-region="blocks-column"] {';
+            $scss .= 'width: '.$theme->settings->courselevelblockwidth.'px;';
+            $scss .= '}';
+            $scss .= '.pagelayout-course #region-main-settings-menu.has-blocks,';
+            $scss .= '.pagelayout-course #region-main.has-blocks,';
+            $scss .= '.pagelayout-incourse #region-main-settings-menu.has-blocks,';
+            $scss .= '.pagelayout-incourse #region-main.has-blocks {';
+            $scss .= 'width: calc(100% - '.($theme->settings->courselevelblockwidth + 30).'px);';
+            $scss .= '}';
+        }
         return $scss;
     }
 }

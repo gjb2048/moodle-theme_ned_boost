@@ -29,10 +29,12 @@ defined('MOODLE_INTERNAL') || die();
 $string['configtitle'] = 'NED Boost';
 $string['pluginname'] = 'NED Boost';
 $string['region-side-pre'] = 'Right';
+$string['region-side-post'] = 'Left';
 
 // Settings.
 $string['blockpositions'] = 'Block positions';
 $string['blockwidth'] = 'Block width';
+$string['blockwidthdesc'] = 'Block width in pixels';
 $string['both'] = 'Both';
 $string['courselevel'] = 'Course level';
 $string['formatsettings'] = 'Format';

@@ -36,7 +36,7 @@ if ($ADMIN->fulltree) {
     // Block width.
     $name = 'theme_ned_boost/sitedashboardlevelblockwidth';
     $title = get_string('blockwidth', 'theme_ned_boost');
-    $description = '';
+    $description = get_string('blockwidthdesc', 'theme_ned_boost');
     $default = 300;
     $setting = new admin_setting_configtext($name, $title, $description, $default, PARAM_INT);
     $setting->set_updatedcallback('theme_reset_all_caches');
@@ -62,7 +62,7 @@ if ($ADMIN->fulltree) {
     // Block width.
     $name = 'theme_ned_boost/courselevelblockwidth';
     $title = get_string('blockwidth', 'theme_ned_boost');
-    $description = '';
+    $description = get_string('blockwidthdesc', 'theme_ned_boost');
     $default = 300;
     $setting = new admin_setting_configtext($name, $title, $description, $default, PARAM_INT);
     $setting->set_updatedcallback('theme_reset_all_caches');
