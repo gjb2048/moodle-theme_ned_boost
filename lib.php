@@ -16,7 +16,7 @@
 
 /**
  * @package    theme_ned_boost
- * @subpackage NED
+ * @subpackage NED Boost
  * @copyright  NED {@link http://ned.ca}
  * @author     NED {@link http://ned.ca}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
