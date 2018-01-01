@@ -51,20 +51,20 @@ $THEME->layouts = [
     // Part of course, typical for modules - default page layout if $cm specified in require_login().
     'incourse' => array(
         'file' => 'layout.php',
-        'regions' => array('side-pre'),
+        'regions' => array('side-pre', 'side-post'),
         'defaultregion' => 'side-pre',
     ),
     // The site home page.
     'frontpage' => array(
         'file' => 'layout.php',
-        'regions' => array('side-pre'),
+        'regions' => array('side-pre', 'side-post'),
         'defaultregion' => 'side-pre',
         'options' => array('nonavbar' => true),
     ),
     // My dashboard page.
     'mydashboard' => array(
         'file' => 'layout.php',
-        'regions' => array('side-pre'),
+        'regions' => array('side-pre', 'side-post'),
         'defaultregion' => 'side-pre',
         'options' => array('nonavbar' => true, 'langmenu' => true),
     )

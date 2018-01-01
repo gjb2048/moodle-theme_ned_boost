@@ -39,14 +39,20 @@ if ($navdraweropen) {
     $extraclasses[] = 'drawer-open-left';
 }
 $bodyattributes = $OUTPUT->body_attributes($extraclasses);
-$blockshtml = $OUTPUT->blocks('side-pre');
-$hasblocks = strpos($blockshtml, 'data-block=') !== false;
+$blockslefthtml = $OUTPUT->blocks('side-pre');
+$hasleftblocks = strpos($blockslefthtml, 'data-block=') !== false;
+$blocksrighthtml = $OUTPUT->blocks('side-post');
+$hasrightblocks = strpos($blocksrighthtml, 'data-block=') !== false;
+$hasblocks = ($hasleftblocks || $hasrightblocks);
 $regionmainsettingsmenu = $OUTPUT->region_main_settings_menu();
 $templatecontext = [
     'sitename' => format_string($SITE->shortname, true, ['context' => context_course::instance(SITEID), "escape" => false]),
     'output' => $OUTPUT,
-    'sidepreblocks' => $blockshtml,
     'hasblocks' => $hasblocks,
+    'sidepreblocks' => $blockslefthtml,
+    'hasleftblocks' => $hasleftblocks,
+    'sidepostblocks' => $blocksrighthtml,
+    'hasrightblocks' => $hasrightblocks,
     'bodyattributes' => $bodyattributes,
     'navdraweropen' => $navdraweropen,
     'regionmainsettingsmenu' => $regionmainsettingsmenu,
@@ -54,5 +60,5 @@ $templatecontext = [
 ];
 
 $templatecontext['flatnavigation'] = $PAGE->flatnav;
-echo $OUTPUT->render_from_template('theme_boost/columns2', $templatecontext);
+echo $OUTPUT->render_from_template('theme_ned_boost/layout', $templatecontext);
 
