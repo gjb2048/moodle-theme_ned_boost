@@ -22,11 +22,15 @@
     NED Boost dynamic column layout template.
 
     Context variables required for this template:
-    * sitename - The name of the site
-    * output - The core renderer for the page
-    * bodyattributes - attributes for the body tag as a string of html attributes
-    * sidepreblocks - HTML for the blocks
-    * hasblocks - true if there are blocks on this page
+    * sitename - The name of the site.
+    * output - The core renderer for the page.
+    * bodyattributes - attributes for the body tag as a string of html attributes.
+    * sidepreblocks - HTML for the side-pre blocks.
+    * hasleftblocks - true if there are left blocks on this page.
+    * sidepostblocks - HTML for the side-post blocks.
+    * hasrightblocks - true if there are left blocks on this page.
+    * hasblocks - true if there are blocks on this page.
+    * bothblocks - true if there both block regions are on this page.
     * navdraweropen - true if the nav drawer should be open on page load
     * regionmainsettingsmenu - HTML for the region main settings menu
     * hasregionmainsettingsmenu - There is a region main settings menu on this page.
@@ -41,8 +45,12 @@
             "main_content": "<h1>Headings make html validators happier</h1>"
          },
         "bodyattributes":"",
-        "sidepreblocks": "<h2>Blocks html goes here</h2>",
+        "sidepreblocks": "<h2>Side-pre blocks html goes here</h2>",
+        "hasleftblocks":true,
+        "sidepostblocks": "",
+        "hasrightblocks":false,
         "hasblocks":true,
+        "bothblocks":false,
         "navdraweropen":true,
         "regionmainsettingsmenu": "",
         "hasregionmainsettingsmenu": false
@@ -76,11 +84,11 @@
                 </section>
                 {{/hasleftblocks}}
                 {{#hasregionmainsettingsmenu}}
-                <div id="region-main-settings-menu" class="hidden-print {{#hasblocks}}has-blocks{{/hasblocks}}">
+                <div id="region-main-settings-menu" class="hidden-print {{#hasblocks}}has-blocks{{#bothblocks}} both-blocks{{/bothblocks}}{{/hasblocks}}">
                     <div> {{{ output.region_main_settings_menu }}} </div>
                 </div>
                 {{/hasregionmainsettingsmenu}}
-                <section id="region-main" {{#hasblocks}}class="has-blocks"{{/hasblocks}}>
+                <section id="region-main" {{#hasblocks}}class="has-blocks{{#bothblocks}} both-blocks{{/bothblocks}}"{{/hasblocks}}>
                     <div class="card card-block">
                     {{#hasregionmainsettingsmenu}}
                         <div class="region_main_settings_menu_proxy"></div>

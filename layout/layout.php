@@ -60,12 +60,14 @@ switch ($OUTPUT->get_block_postions()) { // 1 is 'Both' - default for this layou
         $hasrightblocks = false;
     break;
 }
+$bothblocks = ($hasleftblocks && $hasrightblocks);
 $regionmainsettingsmenu = $OUTPUT->region_main_settings_menu();
 
 $templatecontext = [
     'sitename' => format_string($SITE->shortname, true, ['context' => context_course::instance(SITEID), "escape" => false]),
     'output' => $OUTPUT,
     'hasblocks' => $hasblocks,
+    'bothblocks' => $bothblocks,
     'sidepreblocks' => $blockslefthtml,
     'hasleftblocks' => $hasleftblocks,
     'sidepostblocks' => $blocksrighthtml,

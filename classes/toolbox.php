@@ -50,25 +50,23 @@ class toolbox {
 
         $scss = theme_boost_get_main_scss_content($this->boostparent);
 
-        $scss .= $this->set_sitedashboard_block_width($theme);
-        $scss .= $this->set_course_block_width($theme);
+        $scss .= $this->set_sitedashboard_blocks($theme);
+        $scss .= $this->set_course_blocks($theme);
 
         return $scss;
     }
 
-    protected function set_sitedashboard_block_width($theme) {
+    protected function set_sitedashboard_blocks($theme) {
         $scss = '';
-        $mainwidth = 280;
+        $singlewidth = 280;
+        $doublewidth = 560;
         if (!empty($theme->settings->sitedashboardlevelblockwidth)) {
             $scss .= '.pagelayout-mydashboard [data-region="blocks-column"],';
             $scss .= '.pagelayout-frontpage [data-region="blocks-column"] {';
             $scss .= 'width: '.$theme->settings->sitedashboardlevelblockwidth.'px;';
             $scss .= '}';
-            if ($theme->settings->sitedashboardlevelblockpositions == 1) { // Both.
-                $mainwidth = ($theme->settings->sitedashboardlevelblockwidth * 2) + 60;
-            } else {
-                $mainwidth = $theme->settings->sitedashboardlevelblockwidth + 30;
-            }
+            $singlewidth = $theme->settings->sitedashboardlevelblockwidth + 30;
+            $doublewidth = ($theme->settings->sitedashboardlevelblockwidth * 2) + 60;
             if ($theme->settings->sitedashboardlevelblockpositions != 2) { // Not right.
                 $scss .= '.pagelayout-mydashboard [data-region="blocks-column"].side-pre,';
                 $scss .= '.pagelayout-frontpage [data-region="blocks-column"].side-pre {';
@@ -84,25 +82,29 @@ class toolbox {
         $scss .= '.pagelayout-mydashboard #region-main.has-blocks,';
         $scss .= '.pagelayout-frontpage #region-main-settings-menu.has-blocks,';
         $scss .= '.pagelayout-frontpage #region-main.has-blocks {';
-        $scss .= 'width: calc(100% - '.$mainwidth.'px);';
+        $scss .= 'width: calc(100% - '.$singlewidth.'px);';
+        $scss .= '}';
+        $scss .= '.pagelayout-mydashboard #region-main-settings-menu.has-blocks.both-blocks,';
+        $scss .= '.pagelayout-mydashboard #region-main.has-blocks.both-blocks,';
+        $scss .= '.pagelayout-frontpage #region-main-settings-menu.has-blocks.both-blocks,';
+        $scss .= '.pagelayout-frontpage #region-main.has-blocks.both-blocks {';
+        $scss .= 'width: calc(100% - '.$doublewidth.'px);';
         $scss .= '}';
 
         return $scss;
     }
 
-    protected function set_course_block_width($theme) {
+    protected function set_course_blocks($theme) {
         $scss = '';
-        $mainwidth = 280;
+        $singlewidth = 280;
+        $doublewidth = 560;
         if (!empty($theme->settings->courselevelblockwidth)) {
             $scss .= '.pagelayout-course [data-region="blocks-column"],';
             $scss .= '.pagelayout-incourse [data-region="blocks-column"] {';
             $scss .= 'width: '.$theme->settings->courselevelblockwidth.'px;';
             $scss .= '}';
-            if ($theme->settings->courselevelblockpositions == 1) { // Both.
-                $mainwidth = ($theme->settings->courselevelblockwidth * 2) + 60;
-            } else {
-                $mainwidth = $theme->settings->courselevelblockwidth + 30;
-            }
+            $singlewidth = $theme->settings->courselevelblockwidth + 30;
+            $doublewidth = ($theme->settings->courselevelblockwidth * 2) + 60;
             if ($theme->settings->courselevelblockpositions != 2) { // Not right.
                 $scss .= '.pagelayout-course [data-region="blocks-column"].side-pre,';
                 $scss .= '.pagelayout-incourse [data-region="blocks-column"].side-pre {';
@@ -118,7 +120,13 @@ class toolbox {
         $scss .= '.pagelayout-course #region-main.has-blocks,';
         $scss .= '.pagelayout-incourse #region-main-settings-menu.has-blocks,';
         $scss .= '.pagelayout-incourse #region-main.has-blocks {';
-        $scss .= 'width: calc(100% - '.$mainwidth.'px);';
+        $scss .= 'width: calc(100% - '.$singlewidth.'px);';
+        $scss .= '}';
+        $scss .= '.pagelayout-course #region-main-settings-menu.has-blocks.both-blocks,';
+        $scss .= '.pagelayout-course #region-main.has-blocks.both-blocks,';
+        $scss .= '.pagelayout-incourse #region-main-settings-menu.has-blocks.both-blocks,';
+        $scss .= '.pagelayout-incourse #region-main.has-blocks.both-blocks {';
+        $scss .= 'width: calc(100% - '.$doublewidth.'px);';
         $scss .= '}';
 
         return $scss;
