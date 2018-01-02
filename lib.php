@@ -26,8 +26,38 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+/**
+ * Inject additional SCSS.
+ *
+ * @param theme_config $theme The theme config object.
+ * @return string
+ */
+function theme_ned_boost_get_extra_scss($theme) {
+    $toolbox = \theme_ned_boost\toolbox::get_instance();
+
+    return $toolbox->get_extra_scss($theme);
+}
+
+/**
+ * Inject SCSS content.
+ *
+ * @param theme_config $theme The theme config object.
+ * @return string
+ */
 function theme_ned_boost_get_main_scss_content($theme) {
     $toolbox = \theme_ned_boost\toolbox::get_instance();
 
     return $toolbox->get_main_scss_content($theme);
+}
+
+/**
+ * Get SCSS to prepend.
+ *
+ * @param theme_config $theme The theme config object.
+ * @return array
+ */
+function theme_ned_boost_get_pre_scss($theme) {
+    $toolbox = \theme_ned_boost\toolbox::get_instance();
+
+    return $toolbox->get_pre_scss($theme);
 }

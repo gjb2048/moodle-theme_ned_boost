@@ -44,6 +44,10 @@ class toolbox {
         return self::$instance;
     }
 
+    public function get_extra_scss($theme) {
+        return theme_boost_get_extra_scss($this->boostparent);
+    }
+
     public function get_main_scss_content($theme) {
         global $CFG;
         require_once($CFG->dirroot.'/theme/boost/lib.php');
@@ -130,5 +134,9 @@ class toolbox {
         $scss .= '}';
 
         return $scss;
+    }
+
+    public function get_pre_scss($theme) {
+        return theme_boost_get_pre_scss($this->boostparent);
     }
 }
