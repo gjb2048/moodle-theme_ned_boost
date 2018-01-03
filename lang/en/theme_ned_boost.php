@@ -41,3 +41,6 @@ $string['formatsettings'] = 'Format';
 $string['left'] = 'Left';
 $string['right'] = 'Right';
 $string['sitedashboardlevel'] = 'Site/Dashboard level';
+
+// Capabilities.
+$string['ned_boost:shownavdrawer'] = 'Show hamburger button';

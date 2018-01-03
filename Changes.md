@@ -1,5 +1,8 @@
 Version Information
 ===================
+Version 3.3.0.1.3
+  1. Added 'Show nav drawer' capability string.
+
 Version 3.3.0.1.2
   1. Added 'Show nav drawer' capability - work in progress.
 
