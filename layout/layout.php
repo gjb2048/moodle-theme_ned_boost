@@ -35,7 +35,9 @@ if (isloggedin()) {
     $navdraweropen = false;
 }
 $extraclasses = [];
-if ($navdraweropen) {
+
+$shownavdrawer = has_capability('theme/ned_boost:shownavdrawer', context_course::instance($OUTPUT->page->course->id));
+if ($navdraweropen && $shownavdrawer) {
     $extraclasses[] = 'drawer-open-left';
 }
 
@@ -75,7 +77,8 @@ $templatecontext = [
     'bodyattributes' => $bodyattributes,
     'navdraweropen' => $navdraweropen,
     'regionmainsettingsmenu' => $regionmainsettingsmenu,
-    'hasregionmainsettingsmenu' => !empty($regionmainsettingsmenu)
+    'hasregionmainsettingsmenu' => !empty($regionmainsettingsmenu),
+    'shownavdrawer' => $shownavdrawer
 ];
 
 $templatecontext['flatnavigation'] = $PAGE->flatnav;

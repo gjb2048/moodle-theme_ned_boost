@@ -1,5 +1,8 @@
 Version Information
 ===================
+Version 3.3.0.1.2
+  1. Added 'Show nav drawer' capability - work in progress.
+
 Version 3.3.0.1.1
   1. Fix parent custom CSS.
   2. Add Changes.md and Readme.md files.
