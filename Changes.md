@@ -1,5 +1,9 @@
 Version Information
 ===================
+Version 3.3.0.1.5
+  1. Pre 'Show nav drawer' capability expansion.
+  2. Adjusted 'Show nav drawer' capability definition.  Please manually remove 'theme/ned_boost:shownavdrawer' from the 'capabilities' table before upgrading.
+
 Version 3.3.0.1.4
   1. Add missing capability definition.
 

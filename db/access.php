@@ -35,6 +35,7 @@ $capabilities = array(
             'coursecreator' => CAP_ALLOW,
             'editingteacher' => CAP_ALLOW,
             'teacher' => CAP_ALLOW,
+            'student' => CAP_PROHIBIT,
             'user' => CAP_ALLOW
         )
     )

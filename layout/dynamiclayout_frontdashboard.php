@@ -25,7 +25,7 @@
  */
 
 defined('MOODLE_INTERNAL') || die();
-
+/*
 user_preference_allow_ajax_update('drawer-open-nav', PARAM_ALPHA);
 require_once($CFG->libdir . '/behat/lib.php');
 
@@ -82,5 +82,6 @@ $templatecontext = [
 ];
 
 $templatecontext['flatnavigation'] = $PAGE->flatnav;
-echo $OUTPUT->render_from_template('theme_ned_boost/layout', $templatecontext);
+echo $OUTPUT->render_from_template('theme_ned_boost/dynamiclayout', $templatecontext); */
+echo $OUTPUT->render_from_template('theme_ned_boost/dynamiclayout', $OUTPUT->get_frontdashboard_context());
 

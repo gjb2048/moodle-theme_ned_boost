@@ -15,22 +15,18 @@
     along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 }}
 {{!
-    @template theme_ned_boost/layout
+    @template theme_boost/columns2
 
     Admin time setting template.
 
-    NED Boost dynamic column layout template.
+    Boost 2 column layout template.
 
     Context variables required for this template:
-    * sitename - The name of the site.
-    * output - The core renderer for the page.
-    * bodyattributes - attributes for the body tag as a string of html attributes.
-    * sidepreblocks - HTML for the side-pre blocks.
-    * hasleftblocks - true if there are left blocks on this page.
-    * sidepostblocks - HTML for the side-post blocks.
-    * hasrightblocks - true if there are left blocks on this page.
-    * hasblocks - true if there are blocks on this page.
-    * bothblocks - true if there both block regions are on this page.
+    * sitename - The name of the site
+    * output - The core renderer for the page
+    * bodyattributes - attributes for the body tag as a string of html attributes
+    * sidepreblocks - HTML for the blocks
+    * hasblocks - true if there are blocks on this page
     * navdraweropen - true if the nav drawer should be open on page load
     * regionmainsettingsmenu - HTML for the region main settings menu
     * hasregionmainsettingsmenu - There is a region main settings menu on this page.
@@ -45,12 +41,8 @@
             "main_content": "<h1>Headings make html validators happier</h1>"
          },
         "bodyattributes":"",
-        "sidepreblocks": "<h2>Side-pre blocks html goes here</h2>",
-        "hasleftblocks":true,
-        "sidepostblocks": "",
-        "hasrightblocks":false,
+        "sidepreblocks": "<h2>Blocks html goes here</h2>",
         "hasblocks":true,
-        "bothblocks":false,
         "navdraweropen":true,
         "regionmainsettingsmenu": "",
         "hasregionmainsettingsmenu": false
@@ -71,24 +63,19 @@
 
     {{{ output.standard_top_of_body_html }}}
 
-    {{>theme_ned_boost/header}}
+    {{>theme_ned_boost/navdrawerheader}}
 
     <div id="page" class="container-fluid">
         {{{ output.full_header }}}
 
         <div id="page-content" class="row">
             <div id="region-main-box" class="col-xs-12">
-                {{#hasleftblocks}}
-                <section data-region="blocks-column" class="hidden-print side-pre">
-                    {{{ sidepreblocks }}}
-                </section>
-                {{/hasleftblocks}}
                 {{#hasregionmainsettingsmenu}}
-                <div id="region-main-settings-menu" class="hidden-print {{#hasblocks}}has-blocks{{#bothblocks}} both-blocks{{/bothblocks}}{{/hasblocks}}">
+                <div id="region-main-settings-menu" class="hidden-print {{#hasblocks}}has-blocks{{/hasblocks}}">
                     <div> {{{ output.region_main_settings_menu }}} </div>
                 </div>
                 {{/hasregionmainsettingsmenu}}
-                <section id="region-main" {{#hasblocks}}class="has-blocks{{#bothblocks}} both-blocks{{/bothblocks}}"{{/hasblocks}}>
+                <section id="region-main" {{#hasblocks}}class="has-blocks"{{/hasblocks}}>
                     <div class="card card-block">
                     {{#hasregionmainsettingsmenu}}
                         <div class="region_main_settings_menu_proxy"></div>
@@ -98,11 +85,11 @@
                     {{{ output.course_content_footer }}}
                     </div>
                 </section>
-                {{#hasrightblocks}}
-                <section data-region="blocks-column" class="hidden-print side-post">
-                    {{{ sidepostblocks }}}
+                {{#hasblocks}}
+                <section data-region="blocks-column" class="hidden-print">
+                    {{{ sidepreblocks }}}
                 </section>
-                {{/hasrightblocks}}
+                {{/hasblocks}}
             </div>
         </div>
     </div>
@@ -139,4 +126,5 @@ require(['theme_boost/drawer'], function(mod) {
     mod.init();
 });
 {{/shownavdrawer}}
+});
 {{/js}}

@@ -26,8 +26,5 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version  = 2017122305;        // The current plugin version (Date: YYYYMMDDXX).
-$plugin->requires = 2017051500.00; // This is Moodle 3.3 (Build: 20170515).
-$plugin->maturity = MATURITY_ALPHA;
-$plugin->component = 'theme_ned_boost';
-$plugin->release = '3.3.0.1.5';
+echo $OUTPUT->render_from_template('theme_ned_boost/dynamiclayout', $OUTPUT->get_course_context());
+
