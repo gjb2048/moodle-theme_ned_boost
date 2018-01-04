@@ -28,19 +28,18 @@ namespace theme_ned_boost\output;
 
 defined('MOODLE_INTERNAL') || die;
 
-
 class core_renderer extends \theme_boost\output\core_renderer {
     public function get_block_postions() {
         $position = 1; // Both.
         switch ($this->page->pagelayout) {
-           case 'course':
-           case 'incourse':
-               $position = (!empty($this->page->theme->settings->courselevelblockpositions)) ? $this->page->theme->settings->courselevelblockpositions : $position;
-           break;
-           case 'frontpage':
-           case 'mydashboard':
-               $position = (!empty($this->page->theme->settings->sitedashboardlevelblockpositions)) ? $this->page->theme->settings->sitedashboardlevelblockpositions : $position;
-           break;
+            case 'course':
+            case 'incourse':
+                $position = (!empty($this->page->theme->settings->courselevelblockpositions)) ? $this->page->theme->settings->courselevelblockpositions : $position;
+            break;
+            case 'frontpage':
+            case 'mydashboard':
+                $position = (!empty($this->page->theme->settings->sitedashboardlevelblockpositions)) ? $this->page->theme->settings->sitedashboardlevelblockpositions : $position;
+            break;
         }
 
         return $position;

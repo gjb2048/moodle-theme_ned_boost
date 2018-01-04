@@ -1,5 +1,8 @@
 Version Information
 ===================
+Version 3.3.0.1.4
+  1. Add missing capability definition.
+
 Version 3.3.0.1.3
   1. Added 'Show nav drawer' capability string.
 
