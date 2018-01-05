@@ -1,5 +1,8 @@
 Version Information
 ===================
+Version 3.3.0.1.6
+  1. Extend 'Show nav drawer' capability to all two column layouts.
+
 Version 3.3.0.1.5
   1. Pre 'Show nav drawer' capability expansion.
   2. Adjusted 'Show nav drawer' capability definition.  Please manually remove 'theme/ned_boost:shownavdrawer' from the 'capabilities' table before upgrading.

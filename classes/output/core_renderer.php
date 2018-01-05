@@ -131,4 +131,23 @@ class core_renderer extends \theme_boost\output\core_renderer {
 
         return $templatecontext;
     }
+
+    public function get_layout2_context() {
+        global $CFG;
+
+        $shownavdrawer = has_capability('theme/ned_boost:shownavdrawer', \context_course::instance($this->page->course->id));
+        require_once($CFG->libdir . '/behat/lib.php');
+
+        $templatecontext = $this->get_dynamicbase();
+        $extraclasses = $this->get_navdraweropen($templatecontext, $shownavdrawer);
+        $bodyattributes = $this->body_attributes($extraclasses);
+        $templatecontext['bodyattributes'] = $bodyattributes;
+
+        $blockshtml = $this->blocks('side-pre');
+        $hasblocks = strpos($blockshtml, 'data-block=') !== false;
+        $templatecontext['sidepreblocks'] = $blockshtml;
+        $templatecontext['hasblocks'] = $hasblocks;
+
+        return $templatecontext;
+   }
 }

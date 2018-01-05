@@ -27,4 +27,3 @@
 defined('MOODLE_INTERNAL') || die();
 
 echo $OUTPUT->render_from_template('theme_ned_boost/dynamiclayout', $OUTPUT->get_course_context());
-

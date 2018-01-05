@@ -15,11 +15,9 @@
     along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 }}
 {{!
-    @template theme_boost/columns2
+    @template theme_ned_boost/layout2
 
-    Admin time setting template.
-
-    Boost 2 column layout template.
+    NED Boost 2 column layout template.
 
     Context variables required for this template:
     * sitename - The name of the site
@@ -30,6 +28,7 @@
     * navdraweropen - true if the nav drawer should be open on page load
     * regionmainsettingsmenu - HTML for the region main settings menu
     * hasregionmainsettingsmenu - There is a region main settings menu on this page.
+    * shownavdrawer - true if the navigation drawer should be shown.
 
     Example context (json):
     {
@@ -45,7 +44,8 @@
         "hasblocks":true,
         "navdraweropen":true,
         "regionmainsettingsmenu": "",
-        "hasregionmainsettingsmenu": false
+        "hasregionmainsettingsmenu": false,
+        "shownavdrawer": true
     }
 }}
 {{{ output.doctype }}}

@@ -41,6 +41,22 @@ $THEME->scss = function($theme) {
 };
 
 $THEME->layouts = [
+    // Most backwards compatible layout without the blocks - this is the layout used by default.
+    'base' => array(
+        'file' => 'layout2.php',
+        'regions' => array(),
+    ),
+    // Standard layout with blocks, this is recommended for most pages with general information.
+    'standard' => array(
+        'file' => 'layout2.php',
+        'regions' => array('side-pre'),
+        'defaultregion' => 'side-pre',
+    ),
+    'coursecategory' => array(
+        'file' => 'layout2.php',
+        'regions' => array('side-pre'),
+        'defaultregion' => 'side-pre',
+    ),
     // Main course page.
     'course' => array(
         'file' => 'dynamiclayout_course.php',
@@ -67,6 +83,24 @@ $THEME->layouts = [
         'regions' => array('side-pre', 'side-post'),
         'defaultregion' => 'side-pre',
         'options' => array('nonavbar' => true, 'langmenu' => true),
+    ),
+    // Server administration scripts.
+    'admin' => array(
+        'file' => 'layout2.php',
+        'regions' => array('side-pre'),
+        'defaultregion' => 'side-pre',
+    ),
+    // My public page.
+    'mypublic' => array(
+        'file' => 'layout2.php',
+        'regions' => array('side-pre'),
+        'defaultregion' => 'side-pre',
+    ),
+    // The pagelayout used for reports.
+    'report' => array(
+        'file' => 'layout2.php',
+        'regions' => array('side-pre'),
+        'defaultregion' => 'side-pre',
     )
 ];
 
