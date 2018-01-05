@@ -101,7 +101,22 @@ class core_renderer extends \theme_boost\output\core_renderer {
     public function get_course_context() {
         global $CFG;
 
-        $shownavdrawer = has_capability('theme/ned_boost:shownavdrawer', \context_course::instance($this->page->course->id));
+        if (!empty($this->page->theme->settings->coursehamburgerbutton)) {
+            switch($this->page->theme->settings->coursehamburgerbutton) {
+                case 1: // Show.
+                    $shownavdrawer = true;
+                    break;
+                case 2: // Hide.
+                    $shownavdrawer = false;
+                    break;
+                default: // Is 3 being 'capability'.
+                    $shownavdrawer = has_capability('theme/ned_boost:shownavdrawer', \context_course::instance($this->page->course->id));
+                    break;
+            }
+        } else {
+            $shownavdrawer = has_capability('theme/ned_boost:shownavdrawer', \context_course::instance($this->page->course->id));
+        }
+
         require_once($CFG->libdir . '/behat/lib.php');
 
         $templatecontext = $this->get_dynamicbase();

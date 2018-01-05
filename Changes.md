@@ -1,5 +1,9 @@
 Version Information
 ===================
+Version 3.3.0.1.7
+  1. Add course 'Hamburger button' setting.
+  2. Fix 'Unexpected token' error.
+
 Version 3.3.0.1.6
   1. Extend 'Show nav drawer' capability to all two column layouts.
 

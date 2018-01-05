@@ -38,9 +38,11 @@ $string['blockwidthdesc'] = 'Block width in pixels';
 $string['both'] = 'Both';
 $string['courselevel'] = 'Course level';
 $string['formatsettings'] = 'Format';
+$string['hamburgerbutton'] = 'Hamburger button';
 $string['left'] = 'Left';
 $string['right'] = 'Right';
 $string['sitedashboardlevel'] = 'Site/Dashboard level';
+$string['userolepermission'] = 'Use role permission';
 
 // Capabilities.
 $string['ned_boost:shownavdrawer'] = 'Show hamburger button';

@@ -60,6 +60,19 @@ if ($ADMIN->fulltree) {
     $page->add(new admin_setting_heading('theme_ned_boost_courselevelheading',
         get_string('courselevel', 'theme_ned_boost'), ''));
 
+    // Course hamburger button.
+    $name = 'theme_ned_boost/coursehamburgerbutton';
+    $title = get_string('hamburgerbutton', 'theme_ned_boost');
+    $description = '';
+    $choices = array(
+        1 => new lang_string('show'),
+        2 => new lang_string('hide'),
+        3 => new lang_string('userolepermission', 'theme_ned_boost')
+    );
+    $default = 1;
+    $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+    $page->add($setting);
+
     // Block width.
     $name = 'theme_ned_boost/courselevelblockwidth';
     $title = get_string('blockwidth', 'theme_ned_boost');
