@@ -54,24 +54,24 @@ class toolbox {
 
         $scss = theme_boost_get_main_scss_content($this->boostparent);
 
-        $scss .= $this->set_sitedashboard_blocks($theme);
+        $scss .= $this->set_frontpagedashboard_blocks($theme);
         $scss .= $this->set_course_blocks($theme);
 
         return $scss;
     }
 
-    protected function set_sitedashboard_blocks($theme) {
+    protected function set_frontpagedashboard_blocks($theme) {
         $scss = '';
         $singlewidth = 280;
         $doublewidth = 560;
-        if (!empty($theme->settings->sitedashboardlevelblockwidth)) {
+        if (!empty($theme->settings->frontpagedashboardlevelblockwidth)) {
             $scss .= '.pagelayout-mydashboard [data-region="blocks-column"],';
             $scss .= '.pagelayout-frontpage [data-region="blocks-column"] {';
-            $scss .= 'width: '.$theme->settings->sitedashboardlevelblockwidth.'px;';
+            $scss .= 'width: '.$theme->settings->frontpagedashboardlevelblockwidth.'px;';
             $scss .= '}';
-            $singlewidth = $theme->settings->sitedashboardlevelblockwidth + 30;
-            $doublewidth = ($theme->settings->sitedashboardlevelblockwidth * 2) + 60;
-            if ($theme->settings->sitedashboardlevelblockpositions != 2) { // Not right.
+            $singlewidth = $theme->settings->frontpagedashboardlevelblockwidth + 30;
+            $doublewidth = ($theme->settings->frontpagedashboardlevelblockwidth * 2) + 60;
+            if ($theme->settings->frontpagedashboardlevelblockpositions != 2) { // Not right.
                 $scss .= '.pagelayout-mydashboard [data-region="blocks-column"].side-pre,';
                 $scss .= '.pagelayout-frontpage [data-region="blocks-column"].side-pre {';
                 $scss .= 'float: left;';

@@ -1,5 +1,10 @@
 Version Information
 ===================
+Version 3.3.0.1.8
+  1. Clarify setting name text.
+  2. Do not test 'theme/ned_boost:shownavdrawer' capability on Frontpage / Dashboard or other pages, just the course and course modules (incourse).
+  3. Change setting defaults for block position and width.
+
 Version 3.3.0.1.7
   1. Add course 'Hamburger button' setting.
   2. Fix 'Unexpected token' error.

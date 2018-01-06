@@ -32,16 +32,18 @@ $string['region-side-pre'] = 'Pre';
 $string['region-side-post'] = 'Post';
 
 // Settings.
-$string['blockpositions'] = 'Block positions';
-$string['blockwidth'] = 'Block width';
 $string['blockwidthdesc'] = 'Block width in pixels';
 $string['both'] = 'Both';
+$string['courseblockpositions'] = 'Course block positions';
+$string['courseblockwidth'] = 'Course block width';
+$string['coursehamburgerbutton'] = 'Hamburger button in a course';
 $string['courselevel'] = 'Course level';
 $string['formatsettings'] = 'Format';
-$string['hamburgerbutton'] = 'Hamburger button';
+$string['frontpagedashboardblockpositions'] = 'Frontpage/Dashboard block positions';
+$string['frontpagedashboardblockwidth'] = 'Frontpage/Dashboard block width';
+$string['frontpagedashboardlevel'] = 'Frontpage/Dashboard level';
 $string['left'] = 'Left';
 $string['right'] = 'Right';
-$string['sitedashboardlevel'] = 'Site/Dashboard level';
 $string['userolepermission'] = 'Use role permission';
 
 // Capabilities.

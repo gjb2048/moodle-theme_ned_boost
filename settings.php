@@ -29,29 +29,29 @@ if ($ADMIN->fulltree) {
     $settings = new theme_boost_admin_settingspage_tabs('themesettingned_boost', get_string('configtitle', 'theme_ned_boost'));
     $page = new admin_settingpage('theme_ned_boost_format', get_string('formatsettings', 'theme_ned_boost'));
 
-    // Site / dashboard level.
-    $page->add(new admin_setting_heading('theme_ned_boost_sitedashboardlevelheading',
-        get_string('sitedashboardlevel', 'theme_ned_boost'), ''));
+    // Frontpage / dashboard level.
+    $page->add(new admin_setting_heading('theme_ned_boost_frontpagedashboardlevelheading',
+        get_string('frontpagedashboardlevel', 'theme_ned_boost'), ''));
 
     // Block width.
-    $name = 'theme_ned_boost/sitedashboardlevelblockwidth';
-    $title = get_string('blockwidth', 'theme_ned_boost');
+    $name = 'theme_ned_boost/frontpagedashboardlevelblockwidth';
+    $title = get_string('frontpagedashboardblockwidth', 'theme_ned_boost');
     $description = get_string('blockwidthdesc', 'theme_ned_boost');
-    $default = 300;
+    $default = 350;
     $setting = new admin_setting_configtext($name, $title, $description, $default, PARAM_INT);
     $setting->set_updatedcallback('theme_reset_all_caches');
     $page->add($setting);
 
     // Block positions.
-    $name = 'theme_ned_boost/sitedashboardlevelblockpositions';
-    $title = get_string('blockpositions', 'theme_ned_boost');
+    $name = 'theme_ned_boost/frontpagedashboardlevelblockpositions';
+    $title = get_string('frontpagedashboardblockpositions', 'theme_ned_boost');
     $description = '';
     $choices = array(
         1 => new lang_string('both', 'theme_ned_boost'),
         2 => new lang_string('right', 'theme_ned_boost'),
         3 => new lang_string('left', 'theme_ned_boost')
     );
-    $default = 1;
+    $default = 2;
     $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
     $setting->set_updatedcallback('theme_reset_all_caches');
     $page->add($setting);
@@ -62,7 +62,7 @@ if ($ADMIN->fulltree) {
 
     // Course hamburger button.
     $name = 'theme_ned_boost/coursehamburgerbutton';
-    $title = get_string('hamburgerbutton', 'theme_ned_boost');
+    $title = get_string('coursehamburgerbutton', 'theme_ned_boost');
     $description = '';
     $choices = array(
         1 => new lang_string('show'),
@@ -75,23 +75,23 @@ if ($ADMIN->fulltree) {
 
     // Block width.
     $name = 'theme_ned_boost/courselevelblockwidth';
-    $title = get_string('blockwidth', 'theme_ned_boost');
+    $title = get_string('courseblockwidth', 'theme_ned_boost');
     $description = get_string('blockwidthdesc', 'theme_ned_boost');
-    $default = 300;
+    $default = 350;
     $setting = new admin_setting_configtext($name, $title, $description, $default, PARAM_INT);
     $setting->set_updatedcallback('theme_reset_all_caches');
     $page->add($setting);
 
     // Block positions.
     $name = 'theme_ned_boost/courselevelblockpositions';
-    $title = get_string('blockpositions', 'theme_ned_boost');
+    $title = get_string('courseblockpositions', 'theme_ned_boost');
     $description = '';
     $choices = array(
         1 => new lang_string('both', 'theme_ned_boost'),
         2 => new lang_string('right', 'theme_ned_boost'),
         3 => new lang_string('left', 'theme_ned_boost')
     );
-    $default = 1;
+    $default = 3;
     $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
     $setting->set_updatedcallback('theme_reset_all_caches');
     $page->add($setting);

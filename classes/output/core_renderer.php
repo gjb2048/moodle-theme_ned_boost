@@ -124,7 +124,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
         $bodyattributes = $this->body_attributes($extraclasses);
         $templatecontext['bodyattributes'] = $bodyattributes;
 
-        $position = (!empty($this->page->theme->settings->courselevelblockpositions)) ? $this->page->theme->settings->courselevelblockpositions : 1; // Both.
+        $position = (!empty($this->page->theme->settings->courselevelblockpositions)) ? $this->page->theme->settings->courselevelblockpositions : 2; // Right.
         $this->determine_dynamic_block_positions($templatecontext, $position);
 
         return $templatecontext;
@@ -132,16 +132,14 @@ class core_renderer extends \theme_boost\output\core_renderer {
 
     public function get_frontdashboard_context() {
         global $CFG;
-
-        $shownavdrawer = has_capability('theme/ned_boost:shownavdrawer', \context_course::instance($this->page->course->id));
         require_once($CFG->libdir . '/behat/lib.php');
 
         $templatecontext = $this->get_dynamicbase();
-        $extraclasses = $this->get_navdraweropen($templatecontext, $shownavdrawer);
+        $extraclasses = $this->get_navdraweropen($templatecontext, true);
         $bodyattributes = $this->body_attributes($extraclasses);
         $templatecontext['bodyattributes'] = $bodyattributes;
 
-        $position = (!empty($this->page->theme->settings->sitedashboardlevelblockpositions)) ? $this->page->theme->settings->sitedashboardlevelblockpositions : 1; // Both.
+        $position = (!empty($this->page->theme->settings->frontpagedashboardlevelblockpositions)) ? $this->page->theme->settings->frontpagedashboardlevelblockpositions : 3; // Left.
         $this->determine_dynamic_block_positions($templatecontext, $position);
 
         return $templatecontext;
@@ -149,12 +147,10 @@ class core_renderer extends \theme_boost\output\core_renderer {
 
     public function get_layout2_context() {
         global $CFG;
-
-        $shownavdrawer = has_capability('theme/ned_boost:shownavdrawer', \context_course::instance($this->page->course->id));
         require_once($CFG->libdir . '/behat/lib.php');
 
         $templatecontext = $this->get_dynamicbase();
-        $extraclasses = $this->get_navdraweropen($templatecontext, $shownavdrawer);
+        $extraclasses = $this->get_navdraweropen($templatecontext, true);
         $bodyattributes = $this->body_attributes($extraclasses);
         $templatecontext['bodyattributes'] = $bodyattributes;
 
@@ -164,5 +160,5 @@ class core_renderer extends \theme_boost\output\core_renderer {
         $templatecontext['hasblocks'] = $hasblocks;
 
         return $templatecontext;
-   }
+    }
 }
