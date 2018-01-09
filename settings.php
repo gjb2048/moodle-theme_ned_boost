@@ -27,6 +27,7 @@ defined('MOODLE_INTERNAL') || die();
 
 if ($ADMIN->fulltree) {
     $settings = new theme_boost_admin_settingspage_tabs('themesettingned_boost', get_string('configtitle', 'theme_ned_boost'));
+    // Format tab.
     $page = new admin_settingpage('theme_ned_boost_format', get_string('formatsettings', 'theme_ned_boost'));
 
     // Frontpage / dashboard level.
@@ -93,6 +94,41 @@ if ($ADMIN->fulltree) {
     );
     $default = 3;
     $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+
+    $settings->add($page);
+
+    // If-then tab.
+    $page = new admin_settingpage('theme_ned_boost_ifthen', get_string('ifthen', 'theme_ned_boost'));
+
+    // Frontpage / dashboard level.
+    $page->add(new admin_setting_heading('theme_ned_boost_headerlogoheading',
+        get_string('headerlogo', 'theme_ned_boost'), ''));
+
+    $institutionnumber = 1;
+    // User institution specific header logo.
+    // User institution setting.
+    $name = 'theme_ned_boost/userinstitution'.$institutionnumber;
+    $title = get_string('ifinstitution', 'theme_ned_boost');
+    $description = '';
+    $default = '';
+    $setting = new admin_setting_configtext($name, $title, $description, $default);
+    $page->add($setting);
+
+    // User institution logo file setting.
+    $name = 'theme_ned_boost/institutionlogo'.$institutionnumber;
+    $title = get_string('thenshow', 'theme_ned_boost').' '.get_string('logo', 'theme_ned_boost');
+    $description = '';
+    $setting = new admin_setting_configstoredfile($name, $title, $description, 'institutionlogo'.$institutionnumber);
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+
+    // User institution compact logo file setting.
+    $name = 'theme_ned_boost/institutioncompactlogo'.$institutionnumber;
+    $title = get_string('compactlogo', 'theme_ned_boost');
+    $description = '';
+    $setting = new admin_setting_configstoredfile($name, $title, $description, 'institutioncompactlogo'.$institutionnumber);
     $setting->set_updatedcallback('theme_reset_all_caches');
     $page->add($setting);
 

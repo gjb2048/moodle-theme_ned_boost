@@ -1,5 +1,8 @@
 Version Information
 ===================
+Version 3.3.0.1.9
+  1. Start of 'User institution specific header logo' development.
+
 Version 3.3.0.1.8
   1. Clarify setting name text.
   2. Do not test 'theme/ned_boost:shownavdrawer' capability on Frontpage / Dashboard or other pages, just the course and course modules (incourse).

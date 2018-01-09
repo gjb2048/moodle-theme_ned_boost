@@ -34,6 +34,7 @@ $string['region-side-post'] = 'Post';
 // Settings.
 $string['blockwidthdesc'] = 'Block width in pixels';
 $string['both'] = 'Both';
+$string['compactlogo'] = 'compact logo:';
 $string['courseblockpositions'] = 'Course block positions';
 $string['courseblockwidth'] = 'Course block width';
 $string['coursehamburgerbutton'] = 'Hamburger button in a course';
@@ -42,8 +43,13 @@ $string['formatsettings'] = 'Format';
 $string['frontpagedashboardblockpositions'] = 'Frontpage/Dashboard block positions';
 $string['frontpagedashboardblockwidth'] = 'Frontpage/Dashboard block width';
 $string['frontpagedashboardlevel'] = 'Frontpage/Dashboard level';
+$string['headerlogo'] = 'Header logo';
+$string['ifinstitution'] = 'If Institution = ';
+$string['ifthen'] = 'If-then';
 $string['left'] = 'Left';
+$string['logo'] = 'logo:';
 $string['right'] = 'Right';
+$string['thenshow'] = 'then show';
 $string['userolepermission'] = 'Use role permission';
 
 // Capabilities.
