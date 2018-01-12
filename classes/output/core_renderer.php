@@ -32,6 +32,51 @@ use context_system;
 use moodle_url;
 
 class core_renderer extends \theme_boost\output\core_renderer {
+    protected $compactlogourl = null;
+    protected $logourl = null;
+
+    /**
+     * Constructor
+     *
+     * @param moodle_page $page the page we are doing output for.
+     * @param string $target one of rendering target constants
+     */
+    public function __construct(\moodle_page $page, $target) {
+        parent::__construct($page, $target);
+
+        global $USER;
+        if (!empty($USER->institution)) {
+            $numberofuserinstitutions = get_config('theme_ned_boost', 'userinstitutioncount');
+            for ($institutionnumber = 1; $institutionnumber <= $numberofuserinstitutions; $institutionnumber++) {
+                $userinstitutionsetting = 'userinstitution'.$institutionnumber;
+                if ((!empty($this->page->theme->settings->$userinstitutionsetting)) &&
+                    ($USER->institution == $this->page->theme->settings->$userinstitutionsetting)) {
+                    $institutioncompactlogo = 'institutioncompactlogo'.$institutionnumber;
+                    $institutionlogo = 'institutionlogo'.$institutionnumber;
+
+                    if (!empty($this->page->theme->settings->$institutioncompactlogo)) {
+                        // Hide the requested size in the file path.
+                        $filepath = '0x70/';
+
+                        // Use $CFG->themerev to prevent browser caching when the file changes.
+                        $this->compactlogourl = moodle_url::make_pluginfile_url(context_system::instance()->id, 'theme_ned_boost', $institutioncompactlogo, $filepath,
+                            \theme_get_revision(), $this->page->theme->settings->$institutioncompactlogo);
+                    }
+
+                    if (!empty($this->page->theme->settings->$institutionlogo)) {
+                        // Hide the requested size in the file path.
+                        $filepath = '0x150/';
+
+                        // Use $CFG->themerev to prevent browser caching when the file changes.
+                        $this->logourl = moodle_url::make_pluginfile_url(context_system::instance()->id, 'theme_ned_boost', $institutionlogo, $filepath,
+                            \theme_get_revision(), $this->page->theme->settings->$institutionlogo);
+                    }
+
+                    break;
+                }
+            }
+        }
+    }
 
     /**
      * Get the compact logo URL.
@@ -39,27 +84,11 @@ class core_renderer extends \theme_boost\output\core_renderer {
      * @return string
      */
     public function get_compact_logo_url($maxwidth = 100, $maxheight = 100) {
-        global $USER;
-        $compactlogourl = null;
-
-        if ((!empty($USER->institution)) && (!empty($this->page->theme->settings->userinstitution1))) {
-            if ($USER->institution == $this->page->theme->settings->userinstitution1) {
-               if (!empty($this->page->theme->settings->institutioncompactlogo1)) {
-                    // Hide the requested size in the file path.
-                    $filepath = '0x70/';
-
-                    // Use $CFG->themerev to prevent browser caching when the file changes.
-                    $compactlogourl = moodle_url::make_pluginfile_url(context_system::instance()->id, 'theme_ned_boost', 'institutioncompactlogo1', $filepath,
-                        \theme_get_revision(), $this->page->theme->settings->institutioncompactlogo1);
-               }
-            }
+        if ($this->compactlogourl == null) {
+            $this->compactlogourl = parent::get_compact_logo_url($maxwidth, $maxheight);
         }
 
-        if ($compactlogourl == null) {
-            $compactlogourl = parent::get_compact_logo_url($maxwidth, $maxheight);
-        }
-
-        return $compactlogourl;
+        return $this->compactlogourl;
     }
 
     /**
@@ -70,30 +99,12 @@ class core_renderer extends \theme_boost\output\core_renderer {
      * @return moodle_url|false
      */
     public function get_logo_url($maxwidth = null, $maxheight = 200) {
-        global $USER;
-        $logourl = null;
-
-        if ((!empty($USER->institution)) && (!empty($this->page->theme->settings->userinstitution1))) {
-            if ($USER->institution == $this->page->theme->settings->userinstitution1) {
-               if (!empty($this->page->theme->settings->institutionlogo1)) {
-                    // Hide the requested size in the file path.
-                    $filepath = '0x150/';
-
-                    // Use $CFG->themerev to prevent browser caching when the file changes.
-                    $logourl = moodle_url::make_pluginfile_url(context_system::instance()->id, 'theme_ned_boost', 'institutionlogo1', $filepath,
-                        \theme_get_revision(), $this->page->theme->settings->institutionlogo1);
-               }
-            }
+        if ($this->logourl == null) {
+            $this->logourl = parent::get_logo_url($maxwidth, $maxheight);
         }
 
-        if ($logourl == null) {
-            $logourl = parent::get_logo_url($maxwidth, $maxheight);
-        }
-
-        return $logourl;
+        return $this->logourl;
     }
-
-
 
     protected function get_dynamicbase() {
         global $SITE;

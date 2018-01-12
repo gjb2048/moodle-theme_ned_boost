@@ -106,31 +106,45 @@ if ($ADMIN->fulltree) {
     $page->add(new admin_setting_heading('theme_ned_boost_headerlogoheading',
         get_string('headerlogo', 'theme_ned_boost'), ''));
 
-    $institutionnumber = 1;
-    // User institution specific header logo.
-    // User institution setting.
-    $name = 'theme_ned_boost/userinstitution'.$institutionnumber;
-    $title = get_string('ifinstitution', 'theme_ned_boost');
-    $description = '';
-    $default = '';
-    $setting = new admin_setting_configtext($name, $title, $description, $default);
-    $page->add($setting);
-
-    // User institution logo file setting.
-    $name = 'theme_ned_boost/institutionlogo'.$institutionnumber;
-    $title = get_string('thenshow', 'theme_ned_boost').' '.get_string('logo', 'theme_ned_boost');
-    $description = '';
-    $setting = new admin_setting_configstoredfile($name, $title, $description, 'institutionlogo'.$institutionnumber);
+    // Institution count.
+    $name = 'theme_ned_boost/userinstitutioncount';
+    $title = get_string('userinstitutioncount', 'theme_ned_boost');
+    $description = get_string('userinstitutioncountdesc', 'theme_ned_boost');
+    $uichoices = array();
+    for ($uicount = 1; $uicount <= 10; $uicount++) {
+        $uichoices[$uicount] = $uicount;
+    }
+    $default = 4;
+    $setting = new admin_setting_configselect($name, $title, $description, $default, $uichoices);
     $setting->set_updatedcallback('theme_reset_all_caches');
     $page->add($setting);
 
-    // User institution compact logo file setting.
-    $name = 'theme_ned_boost/institutioncompactlogo'.$institutionnumber;
-    $title = get_string('compactlogo', 'theme_ned_boost');
-    $description = '';
-    $setting = new admin_setting_configstoredfile($name, $title, $description, 'institutioncompactlogo'.$institutionnumber);
-    $setting->set_updatedcallback('theme_reset_all_caches');
-    $page->add($setting);
+    $numberofuserinstitutions = get_config('theme_ned_boost', 'userinstitutioncount');
+    for ($institutionnumber = 1; $institutionnumber <= $numberofuserinstitutions; $institutionnumber++) {
+        // User institution specific header logo.
+        // User institution setting.
+        $name = 'theme_ned_boost/userinstitution'.$institutionnumber;
+        $title = get_string('ifinstitution', 'theme_ned_boost');
+        $description = '';
+        $default = '';
+        $setting = new admin_setting_configtext($name, $title, $description, $default);
+        $page->add($setting);
 
+        // User institution logo file setting.
+        $name = 'theme_ned_boost/institutionlogo'.$institutionnumber;
+        $title = get_string('thenshow', 'theme_ned_boost').' '.get_string('logo', 'theme_ned_boost');
+        $description = '';
+        $setting = new admin_setting_configstoredfile($name, $title, $description, 'institutionlogo'.$institutionnumber);
+        $setting->set_updatedcallback('theme_reset_all_caches');
+        $page->add($setting);
+
+        // User institution compact logo file setting.
+        $name = 'theme_ned_boost/institutioncompactlogo'.$institutionnumber;
+        $title = get_string('compactlogo', 'theme_ned_boost');
+        $description = '';
+        $setting = new admin_setting_configstoredfile($name, $title, $description, 'institutioncompactlogo'.$institutionnumber);
+        $setting->set_updatedcallback('theme_reset_all_caches');
+        $page->add($setting);
+    }
     $settings->add($page);
 }

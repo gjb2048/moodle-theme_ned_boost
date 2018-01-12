@@ -1,5 +1,8 @@
 Version Information
 ===================
+Version 3.3.0.1.10
+  1. Continuation of 'User institution specific header logo' development.
+
 Version 3.3.0.1.9
   1. Start of 'User institution specific header logo' development.
 

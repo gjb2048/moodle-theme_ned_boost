@@ -46,6 +46,8 @@ $string['frontpagedashboardlevel'] = 'Frontpage/Dashboard level';
 $string['headerlogo'] = 'Header logo';
 $string['ifinstitution'] = 'If Institution = ';
 $string['ifthen'] = 'If-then';
+$string['userinstitutioncount'] = 'Number of institutions';
+$string['userinstitutioncountdesc'] = 'Update and save changes to change the number available.';
 $string['left'] = 'Left';
 $string['logo'] = 'logo:';
 $string['right'] = 'Right';
