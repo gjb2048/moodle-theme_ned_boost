@@ -147,4 +147,49 @@ if ($ADMIN->fulltree) {
         $page->add($setting);
     }
     $settings->add($page);
+
+    // Colours.
+    $page = new admin_settingpage('theme_ned_boost_colours', get_string('colours', 'theme_ned_boost'));
+
+    // Main background colour setting.
+    $name = 'theme_ned_boost/mainbackgroundcolour';
+    $title = get_string('mainbackgroundcolour', 'theme_ned_boost');
+    $description = '';
+    $default = '#eceeef';
+    $previewconfig = null;
+    $setting = new admin_setting_configcolourpicker($name, $title, $description, $default, $previewconfig);
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+
+    // Nav-drawer background colour setting.
+    $name = 'theme_ned_boost/navdrawerbackgroundcolour';
+    $title = get_string('navdrawerbackgroundcolour', 'theme_ned_boost');
+    $description = '';
+    $default = '#dce0e2';
+    $previewconfig = null;
+    $setting = new admin_setting_configcolourpicker($name, $title, $description, $default, $previewconfig);
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+
+    // Block header background colour setting.
+    $name = 'theme_ned_boost/blockheaderbackgroundcolour';
+    $title = get_string('blockheaderbackgroundcolour', 'theme_ned_boost');
+    $description = '';
+    $default = '#dce0e2';
+    $previewconfig = null;
+    $setting = new admin_setting_configcolourpicker($name, $title, $description, $default, $previewconfig);
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+
+    // Block header text colour setting.
+    $name = 'theme_ned_boost/blockheadertextcolour';
+    $title = get_string('blockheadertextcolour', 'theme_ned_boost');
+    $description = '';
+    $default = '#333333';
+    $previewconfig = null;
+    $setting = new admin_setting_configcolourpicker($name, $title, $description, $default, $previewconfig);
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+
+    $settings->add($page);
 }

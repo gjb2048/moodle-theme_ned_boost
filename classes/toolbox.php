@@ -44,8 +44,22 @@ class toolbox {
         return self::$instance;
     }
 
-    public function get_extra_scss($theme) {
-        return theme_boost_get_extra_scss($this->boostparent);
+    public function get_pre_scss($theme) {
+        $mainbackgroundcolour = '#eceeef';
+        if (!empty($theme->settings->mainbackgroundcolour)) {
+            $mainbackgroundcolour = $theme->settings->mainbackgroundcolour;
+        }
+        $scss = '$body-bg: '.$mainbackgroundcolour.';';
+
+        $navdrawerbackgroundcolour = '#dce0e2';
+        if (!empty($theme->settings->navdrawerbackgroundcolour)) {
+            $navdrawerbackgroundcolour = $theme->settings->navdrawerbackgroundcolour;
+        }
+        $scss .= '$drawer-bg: '.$navdrawerbackgroundcolour.';';
+
+        $scss .= theme_boost_get_pre_scss($this->boostparent);
+
+        return $scss;
     }
 
     public function get_main_scss_content($theme) {
@@ -56,8 +70,13 @@ class toolbox {
 
         $scss .= $this->set_frontpagedashboard_blocks($theme);
         $scss .= $this->set_course_blocks($theme);
+        $scss .= $this->set_block_header($theme);
 
         return $scss;
+    }
+
+    public function get_extra_scss($theme) {
+        return theme_boost_get_extra_scss($this->boostparent);
     }
 
     protected function set_frontpagedashboard_blocks($theme) {
@@ -136,7 +155,32 @@ class toolbox {
         return $scss;
     }
 
-    public function get_pre_scss($theme) {
-        return theme_boost_get_pre_scss($this->boostparent);
+    protected function set_block_header($theme) {
+        $scss = '';
+
+        $blockheaderbackgroundcolour = '#dce0e2';
+        $blockheadertextcolour = '#333333';
+        if (!empty($theme->settings->blockheaderbackgroundcolour)) {
+            $blockheaderbackgroundcolour = '#dce0e2';
+        }
+        if (!empty($theme->settings->blockheadertextcolour)) {
+            $blockheadertextcolour = '#333333';
+        }
+
+        $scss .= '.block .card-block {';
+        $scss .= 'padding: 0;';
+        $scss .= '}';
+
+        $scss .= '.block .card-block .block-header,';
+        $scss .= '.block .card-block .content {';
+        $scss .= 'padding: $card-spacer-x;';
+        $scss .= '}';
+
+        $scss .= '.block .card-block .block-header {';
+        $scss .= 'background-color: '.$blockheaderbackgroundcolour.';';
+        $scss .= 'color: '.$blockheadertextcolour.';';
+        $scss .= '}';
+
+        return $scss;
     }
 }

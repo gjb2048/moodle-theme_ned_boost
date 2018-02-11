@@ -1,5 +1,8 @@
 Version Information
 ===================
+Version 3.3.0.1.11
+  1 Added main background, nav-drawer background, block header background and text colour settings.
+
 Version 3.3.0.1.10
   1. Continuation of 'User institution specific header logo' development.
 

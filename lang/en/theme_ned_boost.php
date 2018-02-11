@@ -54,5 +54,11 @@ $string['right'] = 'Right';
 $string['thenshow'] = 'then show';
 $string['userolepermission'] = 'Use role permission';
 
+$string['colours'] = 'Colours';
+$string['mainbackgroundcolour'] = 'Main background colour';
+$string['navdrawerbackgroundcolour'] = 'Nav-drawer background colour';
+$string['blockheaderbackgroundcolour'] = 'Block header background colour';
+$string['blockheadertextcolour'] = 'Block header text colour';
+
 // Capabilities.
 $string['ned_boost:shownavdrawer'] = 'Show hamburger button';
