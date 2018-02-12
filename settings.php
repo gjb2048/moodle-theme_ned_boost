@@ -191,5 +191,21 @@ if ($ADMIN->fulltree) {
     $setting->set_updatedcallback('theme_reset_all_caches');
     $page->add($setting);
 
+    global $CFG;
+    if (file_exists("{$CFG->dirroot}/theme/ned_boost/ned_boost_admin_setting_customiseindividualblocks.php")) {
+        require_once($CFG->dirroot . '/theme/ned_boost/ned_boost_admin_setting_customiseindividualblocks.php');
+    } else if (!empty($CFG->themedir) && file_exists("{$CFG->themedir}/ned_boost/ned_boost_admin_setting_customiseindividualblocks.php")) {
+        require_once($CFG->themedir . '/ned_boost/ned_boost_admin_setting_customiseindividualblocks.php');
+    }
+
+    // Customise individual blocks setting.
+    $name = 'theme_ned_boost/customiseindividualblocks';
+    $title = get_string('customiseindividualblocks', 'theme_ned_boost');
+    $description = '';
+    $default = 'poll, fa fa-comment, #dc8d55, #ffffff;'.PHP_EOL.'login, fa fa-user, #e04f42, #ffffff, #ffffff';
+    $setting = new ned_boost_admin_setting_customiseindividualblocks($name, $title, $description, $default);
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+
     $settings->add($page);
 }

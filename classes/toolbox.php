@@ -1,4 +1,5 @@
 <?php
+
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -32,8 +33,10 @@ class toolbox {
 
     protected static $instance;
     protected $boostparent;
+    protected $customiseindividualblocks = null;
 
     private function __construct() {
+
     }
 
     public static function get_instance() {
@@ -49,13 +52,13 @@ class toolbox {
         if (!empty($theme->settings->mainbackgroundcolour)) {
             $mainbackgroundcolour = $theme->settings->mainbackgroundcolour;
         }
-        $scss = '$body-bg: '.$mainbackgroundcolour.';';
+        $scss = '$body-bg: ' . $mainbackgroundcolour . ';';
 
         $navdrawerbackgroundcolour = '#dce0e2';
         if (!empty($theme->settings->navdrawerbackgroundcolour)) {
             $navdrawerbackgroundcolour = $theme->settings->navdrawerbackgroundcolour;
         }
-        $scss .= '$drawer-bg: '.$navdrawerbackgroundcolour.';';
+        $scss .= '$drawer-bg: ' . $navdrawerbackgroundcolour . ';';
 
         $scss .= theme_boost_get_pre_scss($this->boostparent);
 
@@ -64,7 +67,7 @@ class toolbox {
 
     public function get_main_scss_content($theme) {
         global $CFG;
-        require_once($CFG->dirroot.'/theme/boost/lib.php');
+        require_once($CFG->dirroot . '/theme/boost/lib.php');
 
         $scss = theme_boost_get_main_scss_content($this->boostparent);
 
@@ -86,7 +89,7 @@ class toolbox {
         if (!empty($theme->settings->frontpagedashboardlevelblockwidth)) {
             $scss .= '.pagelayout-mydashboard [data-region="blocks-column"],';
             $scss .= '.pagelayout-frontpage [data-region="blocks-column"] {';
-            $scss .= 'width: '.$theme->settings->frontpagedashboardlevelblockwidth.'px;';
+            $scss .= 'width: ' . $theme->settings->frontpagedashboardlevelblockwidth . 'px;';
             $scss .= '}';
             $singlewidth = $theme->settings->frontpagedashboardlevelblockwidth + 30;
             $doublewidth = ($theme->settings->frontpagedashboardlevelblockwidth * 2) + 60;
@@ -105,13 +108,13 @@ class toolbox {
         $scss .= '.pagelayout-mydashboard #region-main.has-blocks,';
         $scss .= '.pagelayout-frontpage #region-main-settings-menu.has-blocks,';
         $scss .= '.pagelayout-frontpage #region-main.has-blocks {';
-        $scss .= 'width: calc(100% - '.$singlewidth.'px);';
+        $scss .= 'width: calc(100% - ' . $singlewidth . 'px);';
         $scss .= '}';
         $scss .= '.pagelayout-mydashboard #region-main-settings-menu.has-blocks.both-blocks,';
         $scss .= '.pagelayout-mydashboard #region-main.has-blocks.both-blocks,';
         $scss .= '.pagelayout-frontpage #region-main-settings-menu.has-blocks.both-blocks,';
         $scss .= '.pagelayout-frontpage #region-main.has-blocks.both-blocks {';
-        $scss .= 'width: calc(100% - '.$doublewidth.'px);';
+        $scss .= 'width: calc(100% - ' . $doublewidth . 'px);';
         $scss .= '}';
 
         return $scss;
@@ -124,7 +127,7 @@ class toolbox {
         if (!empty($theme->settings->courselevelblockwidth)) {
             $scss .= '.pagelayout-course [data-region="blocks-column"],';
             $scss .= '.pagelayout-incourse [data-region="blocks-column"] {';
-            $scss .= 'width: '.$theme->settings->courselevelblockwidth.'px;';
+            $scss .= 'width: ' . $theme->settings->courselevelblockwidth . 'px;';
             $scss .= '}';
             $singlewidth = $theme->settings->courselevelblockwidth + 30;
             $doublewidth = ($theme->settings->courselevelblockwidth * 2) + 60;
@@ -143,13 +146,13 @@ class toolbox {
         $scss .= '.pagelayout-course #region-main.has-blocks,';
         $scss .= '.pagelayout-incourse #region-main-settings-menu.has-blocks,';
         $scss .= '.pagelayout-incourse #region-main.has-blocks {';
-        $scss .= 'width: calc(100% - '.$singlewidth.'px);';
+        $scss .= 'width: calc(100% - ' . $singlewidth . 'px);';
         $scss .= '}';
         $scss .= '.pagelayout-course #region-main-settings-menu.has-blocks.both-blocks,';
         $scss .= '.pagelayout-course #region-main.has-blocks.both-blocks,';
         $scss .= '.pagelayout-incourse #region-main-settings-menu.has-blocks.both-blocks,';
         $scss .= '.pagelayout-incourse #region-main.has-blocks.both-blocks {';
-        $scss .= 'width: calc(100% - '.$doublewidth.'px);';
+        $scss .= 'width: calc(100% - ' . $doublewidth . 'px);';
         $scss .= '}';
 
         return $scss;
@@ -177,10 +180,25 @@ class toolbox {
         $scss .= '}';
 
         $scss .= '.block .card-block .block-header {';
-        $scss .= 'background-color: '.$blockheaderbackgroundcolour.';';
-        $scss .= 'color: '.$blockheadertextcolour.';';
+        $scss .= 'background-color: ' . $blockheaderbackgroundcolour . ';';
+        $scss .= 'color: ' . $blockheadertextcolour . ';';
         $scss .= '}';
 
         return $scss;
     }
+
+    public function get_customiseindividualblocks() {
+        if (is_null($this->customiseindividualblocks)) {
+            $theme = \theme_config::load('ned_boost');
+            if (!empty($theme->settings->customiseindividualblocks)) {
+                $this->customiseindividualblocks = json_decode($theme->settings->customiseindividualblocks, true);
+            } else {
+                // Not set or empty so no blocks to customise.
+                $this->customiseindividualblocks = array();
+            }
+        }
+
+        return $this->customiseindividualblocks;
+    }
+
 }

@@ -59,6 +59,8 @@ $string['mainbackgroundcolour'] = 'Main background colour';
 $string['navdrawerbackgroundcolour'] = 'Nav-drawer background colour';
 $string['blockheaderbackgroundcolour'] = 'Block header background colour';
 $string['blockheadertextcolour'] = 'Block header text colour';
+$string['customiseindividualblocks'] = 'Customise individual blocks';
+$string['customiseindividualblocksjsonfail'] = 'Setting value is not in a valid format.';
 
 // Capabilities.
 $string['ned_boost:shownavdrawer'] = 'Show hamburger button';
