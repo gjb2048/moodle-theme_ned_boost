@@ -1,5 +1,8 @@
 Version Information
 ===================
+Version 3.3.0.1.15
+  1. Block adjustments https://www.screencast.com/t/6j9wk100ZyN.
+
 Version 3.3.0.1.14
   1. Added 'Customise individual blocks' to the 'Colours' settings tab - complete.
 

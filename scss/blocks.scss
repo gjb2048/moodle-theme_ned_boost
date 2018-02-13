@@ -1,0 +1,21 @@
+// Blocks.
+.block .card-block .block-header h3 .fa {
+    padding-right: 10px;
+}
+
+.block .card-block .block-header {
+    padding: 19px $card-spacer-x;
+}
+
+.block .card-block .block-header .block-controls {
+   margin-top: -4px;
+}
+
+.block .card-block .block-header h3 {
+    line-height: 17px;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

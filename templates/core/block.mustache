@@ -9,7 +9,8 @@
         "ariarole": "complementary",
         "title": "Test block",
         "blockinstanceid": 1,
-        "content": "<p>Hello block world!</p>"
+        "content": "<p>Hello block world!</p>",
+        "showheader": true
     }
 
 }}
@@ -35,6 +36,7 @@
     {{! Block contents }}
     <div class="card-block">
 
+        {{#showheader}}
         <div class="block-header">
         {{#hascontrols}}
             <div class="block-controls pull-xs-right header">
@@ -47,6 +49,7 @@
             <h3 id="instance-{{blockinstanceid}}-header" class="card-title">{{{title}}}</h3>
         {{/title}}
         </div>
+        {{/showheader}}
 
         <div class="card-text content">
             {{{content}}}

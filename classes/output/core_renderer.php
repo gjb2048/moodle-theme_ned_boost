@@ -1,4 +1,5 @@
 <?php
+
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -34,6 +35,7 @@ use moodle_url;
 use stdClass;
 
 class core_renderer extends \theme_boost\output\core_renderer {
+
     protected $compactlogourl = null;
     protected $logourl = null;
 
@@ -52,7 +54,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
             for ($institutionnumber = 1; $institutionnumber <= $numberofuserinstitutions; $institutionnumber++) {
                 $userinstitutionsetting = 'userinstitution'.$institutionnumber;
                 if ((!empty($this->page->theme->settings->$userinstitutionsetting)) &&
-                    ($USER->institution == $this->page->theme->settings->$userinstitutionsetting)) {
+                        ($USER->institution == $this->page->theme->settings->$userinstitutionsetting)) {
                     $institutioncompactlogo = 'institutioncompactlogo'.$institutionnumber;
                     $institutionlogo = 'institutionlogo'.$institutionnumber;
 
@@ -61,8 +63,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
                         $filepath = '0x70/';
 
                         // Use $CFG->themerev to prevent browser caching when the file changes.
-                        $this->compactlogourl = moodle_url::make_pluginfile_url(context_system::instance()->id, 'theme_ned_boost', $institutioncompactlogo, $filepath,
-                            \theme_get_revision(), $this->page->theme->settings->$institutioncompactlogo);
+                        $this->compactlogourl = moodle_url::make_pluginfile_url(context_system::instance()->id, 'theme_ned_boost', $institutioncompactlogo, $filepath, \theme_get_revision(), $this->page->theme->settings->$institutioncompactlogo);
                     }
 
                     if (!empty($this->page->theme->settings->$institutionlogo)) {
@@ -70,8 +71,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
                         $filepath = '0x150/';
 
                         // Use $CFG->themerev to prevent browser caching when the file changes.
-                        $this->logourl = moodle_url::make_pluginfile_url(context_system::instance()->id, 'theme_ned_boost', $institutionlogo, $filepath,
-                            \theme_get_revision(), $this->page->theme->settings->$institutionlogo);
+                        $this->logourl = moodle_url::make_pluginfile_url(context_system::instance()->id, 'theme_ned_boost', $institutionlogo, $filepath, \theme_get_revision(), $this->page->theme->settings->$institutionlogo);
                     }
 
                     break;
@@ -158,13 +158,13 @@ class core_renderer extends \theme_boost\output\core_renderer {
                 $blockslefthtml = '';
                 $hasrightblocks = $hasblocks;
                 $hasleftblocks = false;
-            break;
+                break;
             case 3: // Left.
                 $blockslefthtml = $blockslefthtml.$blocksrighthtml;
                 $blocksrighthtml = '';
                 $hasleftblocks = $hasblocks;
                 $hasrightblocks = false;
-            break;
+                break;
         }
         $bothblocks = ($hasleftblocks && $hasrightblocks);
 
@@ -180,7 +180,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
         global $CFG;
 
         if (!empty($this->page->theme->settings->coursehamburgerbutton)) {
-            switch($this->page->theme->settings->coursehamburgerbutton) {
+            switch ($this->page->theme->settings->coursehamburgerbutton) {
                 case 1: // Show.
                     $shownavdrawer = true;
                     break;
@@ -195,7 +195,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
             $shownavdrawer = has_capability('theme/ned_boost:shownavdrawer', \context_course::instance($this->page->course->id));
         }
 
-        require_once($CFG->libdir . '/behat/lib.php');
+        require_once($CFG->libdir.'/behat/lib.php');
 
         $templatecontext = $this->get_dynamicbase();
         $extraclasses = $this->get_navdraweropen($templatecontext, $shownavdrawer);
@@ -210,7 +210,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
 
     public function get_frontdashboard_context() {
         global $CFG;
-        require_once($CFG->libdir . '/behat/lib.php');
+        require_once($CFG->libdir.'/behat/lib.php');
 
         $templatecontext = $this->get_dynamicbase();
         $extraclasses = $this->get_navdraweropen($templatecontext, true);
@@ -225,7 +225,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
 
     public function get_layout2_context() {
         global $CFG;
-        require_once($CFG->libdir . '/behat/lib.php');
+        require_once($CFG->libdir.'/behat/lib.php');
 
         $templatecontext = $this->get_dynamicbase();
         $extraclasses = $this->get_navdraweropen($templatecontext, true);
@@ -252,17 +252,23 @@ class core_renderer extends \theme_boost\output\core_renderer {
         if (empty($bc->blockinstanceid) || !strip_tags($bc->title)) {
             $bc->collapsible = block_contents::NOT_HIDEABLE;
         }
-        
+
         $title = $bc->title;
-        $toolbox = \theme_ned_boost\toolbox::get_instance();
-        $customiseindividualblocks = $toolbox->get_customiseindividualblocks($this->page->theme);
-        if (!empty($customiseindividualblocks)) {
-            foreach ($customiseindividualblocks as $blockname => $blocksettings) {
-                if ($blockname == $bc->attributes['data-block']) {
-                    if (!empty($blocksettings[\theme_ned_boost\toolbox::$fontawesomekey])) {
-                        $title = $toolbox->getfontawesomemarkup($blocksettings[\theme_ned_boost\toolbox::$fontawesomekey]).$title;
+        $showheader = true;
+
+        if (empty($title)) {
+            $showheader = false;
+        } else {
+            $toolbox = \theme_ned_boost\toolbox::get_instance();
+            $customiseindividualblocks = $toolbox->get_customiseindividualblocks($this->page->theme);
+            if (!empty($customiseindividualblocks)) {
+                foreach ($customiseindividualblocks as $blockname => $blocksettings) {
+                    if ($blockname == $bc->attributes['data-block']) {
+                        if (!empty($blocksettings[\theme_ned_boost\toolbox::$fontawesomekey])) {
+                            $title = $toolbox->getfontawesomemarkup($blocksettings[\theme_ned_boost\toolbox::$fontawesomekey]).$title;
+                        }
+                        break;
                     }
-                    break;
                 }
             }
         }
@@ -287,6 +293,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
         if ($context->hascontrols) {
             $context->controls = $this->block_controls($bc->controls, $id);
         }
+        $context->showheader = $showheader;
 
         return $this->render_from_template('core/block', $context);
     }

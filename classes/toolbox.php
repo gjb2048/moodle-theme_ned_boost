@@ -42,7 +42,7 @@ class toolbox {
     public static $nocolourdelimiter = '-';
 
     private function __construct() {
-
+        
     }
 
     public static function get_instance() {
@@ -76,6 +76,12 @@ class toolbox {
         require_once($CFG->dirroot.'/theme/boost/lib.php');
 
         $scss = theme_boost_get_main_scss_content($this->boostparent);
+
+        if (file_exists("{$CFG->dirroot}/theme/ned_boost/scss/blocks.scss")) {
+            $scss .= file_get_contents($CFG->dirroot.'/theme/ned_boost/scss/blocks.scss');
+        } else if (!empty($CFG->themedir) && file_exists("{$CFG->themedir}/ned_boost/scss/blocks.scss")) {
+            $scss .= file_get_contents($CFG->themedir.'/ned_boost/scss/blocks.scss');
+        }
 
         $scss .= $this->set_frontpagedashboard_blocks($theme);
         $scss .= $this->set_course_blocks($theme);
@@ -180,7 +186,6 @@ class toolbox {
         $scss .= 'padding: 0;';
         $scss .= '}';
 
-        $scss .= '.block .card-block .block-header,';
         $scss .= '.block .card-block .content {';
         $scss .= 'padding: $card-spacer-x;';
         $scss .= '}';
@@ -188,10 +193,6 @@ class toolbox {
         $scss .= '.block .card-block .block-header {';
         $scss .= 'background-color: '.$blockheaderbackgroundcolour.';';
         $scss .= 'color: '.$blockheadertextcolour.';';
-        $scss .= '}';
-
-        $scss .= '.block .card-block .block-header.fa {';
-        $scss .= 'padding-right: 10px;';
         $scss .= '}';
 
         // Individual blocks.
@@ -205,7 +206,9 @@ class toolbox {
             }
             if ((!empty($blocksettings[self::$headertextcolourkey])) &&
                     ($blocksettings[self::$headertextcolourkey][0] != self::$nocolourdelimiter)) { // Header text colour.
-                $scss .= '.block.block_'.$blockname.' .card-block .block-header {';
+                $scss .= '.block.block_'.$blockname.' .card-block .block-header,';
+                $scss .= '.block.block_'.$blockname.' .block-controls a.dropdown-toggle,';
+                $scss .= '.block.block_'.$blockname.' .block-controls a.dropdown-toggle .icon {';
                 $scss .= 'color: '.$blocksettings[self::$headertextcolourkey].';';
                 $scss .= '}';
             }
