@@ -201,7 +201,13 @@ if ($ADMIN->fulltree) {
     // Customise individual blocks setting.
     $name = 'theme_ned_boost/customiseindividualblocks';
     $title = get_string('customiseindividualblocks', 'theme_ned_boost');
-    $description = '';
+    $description = get_string('customiseindividualblocksformat', 'theme_ned_boost').
+            get_string('customiseindividualblocksblocktype', 'theme_ned_boost').', '.
+            get_string('customiseindividualblocksfontawesome', 'theme_ned_boost').', '.
+            get_string('blockheaderbackgroundcolour', 'theme_ned_boost').', '.
+            get_string('blockheadertextcolour', 'theme_ned_boost').', '.
+            get_string('blockbodybackgroundcolour', 'theme_ned_boost').
+            get_string('customiseindividualblockssemi', 'theme_ned_boost');
     $default = 'poll, fa fa-comment, #dc8d55, #ffffff;'.PHP_EOL.'login, fa fa-user, #e04f42, #ffffff, #ffffff';
     $setting = new ned_boost_admin_setting_customiseindividualblocks($name, $title, $description, $default);
     $setting->set_updatedcallback('theme_reset_all_caches');

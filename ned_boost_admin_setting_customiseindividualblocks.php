@@ -52,8 +52,8 @@ class ned_boost_admin_setting_customiseindividualblocks extends admin_setting_co
     /**
      * Returns an XHTML string for the editor.
      *
-     * @param string $data.
-     * @param string $query.
+     * @param string $data
+     * @param string $query
      * @return string XHTML string for the editor.
      */
     public function output_html($data, $query = '') {
@@ -62,11 +62,21 @@ class ned_boost_admin_setting_customiseindividualblocks extends admin_setting_co
         $default = $this->get_defaultsetting();
         $defaultinfo = $default;
         if (!is_null($default) and $default !== '') {
-            $defaultinfo = "\n" . $default;
+            $defaultinfo = "\n".$default;
         }
 
-        // Convert the stored JSON into the original form.
-        $decodeddata = $this->decode($data);
+        if (empty($data)) {
+            $decodeddata = '';
+        } else {
+            /* If the string starts with a '{' then it could be JSON otherwise there was an error and the decoded setting has
+              been returned. */
+            if ($data[0] == '{') {
+                // Convert the stored JSON into the original form.
+                $decodeddata = $this->decode($data);
+            } else {
+                $decodeddata = $data;
+            }
+        }
 
         $context = (object) [
                     'cols' => $this->thecols,
@@ -107,10 +117,7 @@ class ned_boost_admin_setting_customiseindividualblocks extends admin_setting_co
             if (empty($data)) {
                 $this->json = '';
             } else {
-                $this->json = $this->encode($data);
-                if ($this->json === false) {
-                    $validated = get_string('customiseindividualblocksjsonfail', 'theme_ned_boost');
-                }
+                $validated = $this->encode($data);
             }
         }
 
@@ -120,32 +127,78 @@ class ned_boost_admin_setting_customiseindividualblocks extends admin_setting_co
     /**
      * Convert the string into JSON format for storage and use.
      * @param string string.
-     * @return string JSON or false if cannot convert.
+     * @return mixed true if ok string if error found.
      */
     protected function encode($string) {
         $structure = array();
+        $result = '';
+        $toolbox = \theme_ned_boost\toolbox::get_instance();
+
         // Convert string to array.
         $lines = explode(';', $string);
         foreach ($lines as $line) {
             $theline = explode(',', $line);
             // Line must have at least two elements, the block and the Font Awesome icon.
             if (count($theline) > 1) {
-                $theline[0] = ltrim($theline[0]); // Remove newlines.
+                $theline[0] = ltrim($theline[0]); // Remove newlines on the block name.
                 $structure[$theline[0]] = array();
-                $structure[$theline[0]]['fa'] = $theline[1];
+                $structure[$theline[0]][\theme_ned_boost\toolbox::$fontawesomekey] = trim($theline[1]);
                 if (!empty($theline[2])) {
-                    $structure[$theline[0]]['hbc'] = $theline[2];
+                    $theline[2] = trim($theline[2]);
+                    if ($theline[2][0] == \theme_ned_boost\toolbox::$nocolourdelimiter) {
+                        $structure[$theline[0]][\theme_ned_boost\toolbox::$headerbackgroundcolourkey] = $theline[2][0];
+                    } else if ($toolbox->validate_colour($theline[2])) {
+                        $structure[$theline[0]][\theme_ned_boost\toolbox::$headerbackgroundcolourkey] = $theline[2];
+                    } else {
+                        $result .= get_string('customiseindividualblockscolourfail', 'theme_ned_boost', array(
+                            'blockname' => $theline[0],
+                            'setting' => get_string('headerbackgroundcolour', 'theme_ned_boost'),
+                            'value' => $theline[2]
+                        ));
+                    }
                 }
                 if (!empty($theline[3])) {
-                    $structure[$theline[0]]['htc'] = $theline[3];
+                    $theline[3] = trim($theline[3]);
+                    if ($theline[3][0] == \theme_ned_boost\toolbox::$nocolourdelimiter) {
+                        $structure[$theline[0]][\theme_ned_boost\toolbox::$headertextcolourkey] = $theline[3][0];
+                    } else if ($toolbox->validate_colour($theline[3])) {
+                        $structure[$theline[0]][\theme_ned_boost\toolbox::$headertextcolourkey] = $theline[3];
+                    } else {
+                        $result .= get_string('customiseindividualblockscolourfail', 'theme_ned_boost', array(
+                            'blockname' => $theline[0],
+                            'setting' => get_string('headertextcolour', 'theme_ned_boost'),
+                            'value' => $theline[3]
+                        ));
+                    }
                 }
                 if (!empty($theline[4])) {
-                    $structure[$theline[0]]['bbc'] = $theline[4];
+                    $theline[4] = trim($theline[4]);
+                    if ($theline[4][0] == \theme_ned_boost\toolbox::$nocolourdelimiter) {
+                        $structure[$theline[0]][\theme_ned_boost\toolbox::$bodybackgroundcolourkey] = $theline[4][0];
+                    } else if ($toolbox->validate_colour($theline[4])) {
+                        $structure[$theline[0]][\theme_ned_boost\toolbox::$bodybackgroundcolourkey] = $theline[4];
+                    } else {
+                        $result .= get_string('customiseindividualblockscolourfail', 'theme_ned_boost', array(
+                            'blockname' => $theline[0],
+                            'setting' => get_string('bodybackgroundcolour', 'theme_ned_boost'),
+                            'value' => $theline[4]
+                        ));
+                    }
                 }
             }
         }
 
-        return json_encode($structure);
+        if (empty($result)) {
+            $this->json = json_encode($structure);
+
+            if ($this->json === false) {
+                $result = get_string('customiseindividualblocksjsonfail', 'theme_ned_boost');
+            } else {
+                $result = true;
+            }
+        }
+
+        return $result;
     }
 
     /**
@@ -155,13 +208,17 @@ class ned_boost_admin_setting_customiseindividualblocks extends admin_setting_co
      */
     protected function decode($json) {
         $structure = json_decode($json, true);
-        $lines = array();
 
-        foreach ($structure as $block => $blocksettings) {
-            $lines[] = $block . implode(',', $blocksettings);
+        if (($structure !== false) && (!empty($structure))) {
+            $lines = array();
+
+            foreach ($structure as $block => $blocksettings) {
+                $lines[] = $block.', '.implode(', ', $blocksettings);
+            }
+
+            return implode(';'.PHP_EOL, $lines);
+        } else {
+            return false;
         }
-
-        return implode(';' . PHP_EOL, $lines);
     }
-
 }

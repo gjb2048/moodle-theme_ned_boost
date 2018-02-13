@@ -252,6 +252,20 @@ class core_renderer extends \theme_boost\output\core_renderer {
         if (empty($bc->blockinstanceid) || !strip_tags($bc->title)) {
             $bc->collapsible = block_contents::NOT_HIDEABLE;
         }
+        
+        $title = $bc->title;
+        $toolbox = \theme_ned_boost\toolbox::get_instance();
+        $customiseindividualblocks = $toolbox->get_customiseindividualblocks($this->page->theme);
+        if (!empty($customiseindividualblocks)) {
+            foreach ($customiseindividualblocks as $blockname => $blocksettings) {
+                if ($blockname == $bc->attributes['data-block']) {
+                    if (!empty($blocksettings[\theme_ned_boost\toolbox::$fontawesomekey])) {
+                        $title = $toolbox->getfontawesomemarkup($blocksettings[\theme_ned_boost\toolbox::$fontawesomekey]).$title;
+                    }
+                    break;
+                }
+            }
+        }
 
         $id = !empty($bc->attributes['id']) ? $bc->attributes['id'] : uniqid('block-');
         $context = new stdClass();
@@ -265,7 +279,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
         $context->arialabel = $bc->arialabel;
         $context->ariarole = !empty($bc->attributes['role']) ? $bc->attributes['role'] : 'complementary';
         $context->type = $bc->attributes['data-block'];
-        $context->title = $bc->title;
+        $context->title = $title;
         $context->content = $bc->content;
         $context->annotation = $bc->annotation;
         $context->footer = $bc->footer;

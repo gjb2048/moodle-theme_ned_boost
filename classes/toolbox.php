@@ -34,6 +34,12 @@ class toolbox {
     protected static $instance;
     protected $boostparent;
     protected $customiseindividualblocks = null;
+    // Constants.
+    public static $fontawesomekey = 'fa';
+    public static $headerbackgroundcolourkey = 'hbc';
+    public static $headertextcolourkey = 'htc';
+    public static $bodybackgroundcolourkey = 'bbc';
+    public static $nocolourdelimiter = '-';
 
     private function __construct() {
 
@@ -52,13 +58,13 @@ class toolbox {
         if (!empty($theme->settings->mainbackgroundcolour)) {
             $mainbackgroundcolour = $theme->settings->mainbackgroundcolour;
         }
-        $scss = '$body-bg: ' . $mainbackgroundcolour . ';';
+        $scss = '$body-bg: '.$mainbackgroundcolour.';';
 
         $navdrawerbackgroundcolour = '#dce0e2';
         if (!empty($theme->settings->navdrawerbackgroundcolour)) {
             $navdrawerbackgroundcolour = $theme->settings->navdrawerbackgroundcolour;
         }
-        $scss .= '$drawer-bg: ' . $navdrawerbackgroundcolour . ';';
+        $scss .= '$drawer-bg: '.$navdrawerbackgroundcolour.';';
 
         $scss .= theme_boost_get_pre_scss($this->boostparent);
 
@@ -67,7 +73,7 @@ class toolbox {
 
     public function get_main_scss_content($theme) {
         global $CFG;
-        require_once($CFG->dirroot . '/theme/boost/lib.php');
+        require_once($CFG->dirroot.'/theme/boost/lib.php');
 
         $scss = theme_boost_get_main_scss_content($this->boostparent);
 
@@ -89,7 +95,7 @@ class toolbox {
         if (!empty($theme->settings->frontpagedashboardlevelblockwidth)) {
             $scss .= '.pagelayout-mydashboard [data-region="blocks-column"],';
             $scss .= '.pagelayout-frontpage [data-region="blocks-column"] {';
-            $scss .= 'width: ' . $theme->settings->frontpagedashboardlevelblockwidth . 'px;';
+            $scss .= 'width: '.$theme->settings->frontpagedashboardlevelblockwidth.'px;';
             $scss .= '}';
             $singlewidth = $theme->settings->frontpagedashboardlevelblockwidth + 30;
             $doublewidth = ($theme->settings->frontpagedashboardlevelblockwidth * 2) + 60;
@@ -108,13 +114,13 @@ class toolbox {
         $scss .= '.pagelayout-mydashboard #region-main.has-blocks,';
         $scss .= '.pagelayout-frontpage #region-main-settings-menu.has-blocks,';
         $scss .= '.pagelayout-frontpage #region-main.has-blocks {';
-        $scss .= 'width: calc(100% - ' . $singlewidth . 'px);';
+        $scss .= 'width: calc(100% - '.$singlewidth.'px);';
         $scss .= '}';
         $scss .= '.pagelayout-mydashboard #region-main-settings-menu.has-blocks.both-blocks,';
         $scss .= '.pagelayout-mydashboard #region-main.has-blocks.both-blocks,';
         $scss .= '.pagelayout-frontpage #region-main-settings-menu.has-blocks.both-blocks,';
         $scss .= '.pagelayout-frontpage #region-main.has-blocks.both-blocks {';
-        $scss .= 'width: calc(100% - ' . $doublewidth . 'px);';
+        $scss .= 'width: calc(100% - '.$doublewidth.'px);';
         $scss .= '}';
 
         return $scss;
@@ -127,7 +133,7 @@ class toolbox {
         if (!empty($theme->settings->courselevelblockwidth)) {
             $scss .= '.pagelayout-course [data-region="blocks-column"],';
             $scss .= '.pagelayout-incourse [data-region="blocks-column"] {';
-            $scss .= 'width: ' . $theme->settings->courselevelblockwidth . 'px;';
+            $scss .= 'width: '.$theme->settings->courselevelblockwidth.'px;';
             $scss .= '}';
             $singlewidth = $theme->settings->courselevelblockwidth + 30;
             $doublewidth = ($theme->settings->courselevelblockwidth * 2) + 60;
@@ -146,13 +152,13 @@ class toolbox {
         $scss .= '.pagelayout-course #region-main.has-blocks,';
         $scss .= '.pagelayout-incourse #region-main-settings-menu.has-blocks,';
         $scss .= '.pagelayout-incourse #region-main.has-blocks {';
-        $scss .= 'width: calc(100% - ' . $singlewidth . 'px);';
+        $scss .= 'width: calc(100% - '.$singlewidth.'px);';
         $scss .= '}';
         $scss .= '.pagelayout-course #region-main-settings-menu.has-blocks.both-blocks,';
         $scss .= '.pagelayout-course #region-main.has-blocks.both-blocks,';
         $scss .= '.pagelayout-incourse #region-main-settings-menu.has-blocks.both-blocks,';
         $scss .= '.pagelayout-incourse #region-main.has-blocks.both-blocks {';
-        $scss .= 'width: calc(100% - ' . $doublewidth . 'px);';
+        $scss .= 'width: calc(100% - '.$doublewidth.'px);';
         $scss .= '}';
 
         return $scss;
@@ -180,16 +186,42 @@ class toolbox {
         $scss .= '}';
 
         $scss .= '.block .card-block .block-header {';
-        $scss .= 'background-color: ' . $blockheaderbackgroundcolour . ';';
-        $scss .= 'color: ' . $blockheadertextcolour . ';';
+        $scss .= 'background-color: '.$blockheaderbackgroundcolour.';';
+        $scss .= 'color: '.$blockheadertextcolour.';';
         $scss .= '}';
+
+        $scss .= '.block .card-block .block-header.fa {';
+        $scss .= 'padding-right: 10px;';
+        $scss .= '}';
+
+        // Individual blocks.
+        $customiseindividualblocks = $this->get_customiseindividualblocks($theme);
+        foreach ($customiseindividualblocks as $blockname => $blocksettings) {
+            if ((!empty($blocksettings[self::$headerbackgroundcolourkey])) &&
+                    ($blocksettings[self::$headerbackgroundcolourkey][0] != self::$nocolourdelimiter)) { // Header background colour.
+                $scss .= '.block.block_'.$blockname.' .card-block .block-header {';
+                $scss .= 'background-color: '.$blocksettings[self::$headerbackgroundcolourkey].';';
+                $scss .= '}';
+            }
+            if ((!empty($blocksettings[self::$headertextcolourkey])) &&
+                    ($blocksettings[self::$headertextcolourkey][0] != self::$nocolourdelimiter)) { // Header text colour.
+                $scss .= '.block.block_'.$blockname.' .card-block .block-header {';
+                $scss .= 'color: '.$blocksettings[self::$headertextcolourkey].';';
+                $scss .= '}';
+            }
+            if ((!empty($blocksettings[self::$bodybackgroundcolourkey])) &&
+                    ($blocksettings[self::$bodybackgroundcolourkey][0] != self::$nocolourdelimiter)) { // Body background colour.
+                $scss .= '.block.block_'.$blockname.' .card-block .content {';
+                $scss .= 'background-color: '.$blocksettings[self::$bodybackgroundcolourkey].';';
+                $scss .= '}';
+            }
+        }
 
         return $scss;
     }
 
-    public function get_customiseindividualblocks() {
+    public function get_customiseindividualblocks($theme) {
         if (is_null($this->customiseindividualblocks)) {
-            $theme = \theme_config::load('ned_boost');
             if (!empty($theme->settings->customiseindividualblocks)) {
                 $this->customiseindividualblocks = json_decode($theme->settings->customiseindividualblocks, true);
             } else {
@@ -201,4 +233,37 @@ class toolbox {
         return $this->customiseindividualblocks;
     }
 
+    /**
+     * Validates the colour that was entered by the user.
+     * Borrowed from 'admin_setting_configcolourpicker' in '/lib/adminlib.php'.
+     *
+     * I'm not completely happy with this solution as would rather embed in the colour
+     * picker code in the form, however I find this area rather fraut and I hear that
+     * Dan Poltawski (via MDL-42270) will be re-writing the forms lib so hopefully more
+     * developer friendly.
+     *
+     * Note: Colour names removed, but might consider putting them back in if asked, but
+     *       at the moment that would require quite a few changes and coping with existing
+     *       settings.  Either convert the names to hex or allow them as valid values and
+     *       fix the colour picker code and the CSS code in 'format.php' for the setting.
+     *
+     * Colour name to hex on: http://www.w3schools.com/cssref/css_colornames.asp.
+     *
+     * @param string $data the colour string to validate.
+     * @return true|false.
+     */
+    public function validate_colour($data) {
+        if (preg_match('/^#?([[:xdigit:]]{3}){1,2}$/', $data)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function getfontawesomemarkup($theicon, $classes = array(), $attributes = array(), $content = '') {
+        $classes[] = $theicon;
+        $attributes['aria-hidden'] = 'true';
+        $attributes['class'] = implode(' ', $classes);
+        return \html_writer::tag('span', $content, $attributes);
+    }
 }

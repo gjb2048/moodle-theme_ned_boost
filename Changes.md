@@ -1,5 +1,8 @@
 Version Information
 ===================
+Version 3.3.0.1.14
+  1. Added 'Customise individual blocks' to the 'Colours' settings tab - complete.
+
 Version 3.3.0.1.12
   1. Added 'Customise individual blocks' to the 'Colours' settings tab - not complete, work in progress.
 

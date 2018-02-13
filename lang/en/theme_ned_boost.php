@@ -59,8 +59,18 @@ $string['mainbackgroundcolour'] = 'Main background colour';
 $string['navdrawerbackgroundcolour'] = 'Nav-drawer background colour';
 $string['blockheaderbackgroundcolour'] = 'Block header background colour';
 $string['blockheadertextcolour'] = 'Block header text colour';
+$string['blockbodybackgroundcolour'] = 'Block body background colour';
 $string['customiseindividualblocks'] = 'Customise individual blocks';
-$string['customiseindividualblocksjsonfail'] = 'Setting value is not in a valid format.';
+$string['customiseindividualblocksjsonfail'] = 'Setting value is not in a valid format to be stored.';
+$string['customiseindividualblocksformat'] = 'Format: ';
+$string['customiseindividualblocksfontawesome'] = 'FontAwesome classes';
+$string['customiseindividualblocksblocktype'] = 'Block type';
+$string['customiseindividualblockssemi'] = ' and finally a semi-colon \';\' if there is to be another line.  Note: After the FontAwesome classes the colours are optional, to get to a setting without setting the previous use a dash \'-\' for the value.';
+
+$string['customiseindividualblockscolourfail'] = 'Block {$a->blockname} {$a->setting} of \'{$a->value}\' is not a valid colour.  ';
+$string['headerbackgroundcolour'] = 'header background colour';
+$string['headertextcolour'] = 'header text colour';
+$string['bodybackgroundcolour'] = 'body background colour';
 
 // Capabilities.
 $string['ned_boost:shownavdrawer'] = 'Show hamburger button';
