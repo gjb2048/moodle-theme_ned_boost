@@ -1,6 +1,9 @@
 Version Information
 ===================
-Version 3.3.0.1.16
+Version 3.3.0.1.17
+  1. Block adjustments reduced height https://www.screencast.com/t/tZjtZA0UC.
+
+  Version 3.3.0.1.16
   1. Block adjustments https://www.screencast.com/t/tZjtZA0UC.
 
 Version 3.3.0.1.15
