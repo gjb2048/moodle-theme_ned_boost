@@ -1,6 +1,8 @@
 // Blocks.
 .block .card-block .block-header h3 .fa {
+    font-size: 1.5rem;
     padding-right: 10px;
+    vertical-align: middle;
 }
 
 .block .card-block .block-header {
@@ -18,4 +20,8 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.block-region .card-block .card-title {
+    font-weight: normal;
 }

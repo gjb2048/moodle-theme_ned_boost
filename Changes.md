@@ -1,5 +1,8 @@
 Version Information
 ===================
+Version 3.3.0.1.16
+  1. Block adjustments https://www.screencast.com/t/tZjtZA0UC.
+
 Version 3.3.0.1.15
   1. Block adjustments https://www.screencast.com/t/6j9wk100ZyN.
 
