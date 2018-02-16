@@ -1,5 +1,8 @@
 Version Information
 ===================
+Version 3.3.0.1.18
+  1. Block fa icons not completely showing.
+
 Version 3.3.0.1.17
   1. Block adjustments reduced height https://www.screencast.com/t/tZjtZA0UC.
 
