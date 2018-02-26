@@ -53,6 +53,9 @@ $string['logo'] = 'logo:';
 $string['right'] = 'Right';
 $string['thenshow'] = 'then show';
 $string['userolepermission'] = 'Use role permission';
+$string['activitiesandresources'] = 'Activities & Resources';
+$string['jumptomenu'] = '\'Jump to...\' menu';
+$string['forwardbacklinks'] = 'Forward/back links';
 
 $string['colours'] = 'Colours';
 $string['mainbackgroundcolour'] = 'Main background colour';
