@@ -56,6 +56,7 @@ $string['userolepermission'] = 'Use role permission';
 $string['activitiesandresources'] = 'Activities & Resources';
 $string['forwardbacklinks'] = 'Forward/back links';
 $string['jumptomenu'] = '\'Jump to...\' menu';
+$string['questionnaireactivitylink'] = 'Questionnaire activity - link directly to Questions page';
 $string['urlresourcelink'] = 'URL Resource - link directly to URL';
 
 $string['colours'] = 'Colours';

@@ -1,5 +1,8 @@
 Version Information
 ===================
+Version 3.3.0.1.22
+  1. Questionnaire activity link setting - https://www.screencast.com/t/PLIokaxAuMVH.
+
 Version 3.3.0.1.21
   1. Ensure that block controls are available on empty title blocks when editing.
 

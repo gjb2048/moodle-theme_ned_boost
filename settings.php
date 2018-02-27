@@ -218,6 +218,17 @@ if ($ADMIN->fulltree) {
     // Activities & Resources.
     $page = new admin_settingpage('theme_ned_activities_resources', get_string('activitiesandresources', 'theme_ned_boost'));
 
+    $name = 'theme_ned_boost/questionnaireactivitylink';
+    $title = get_string('questionnaireactivitylink', 'theme_ned_boost');
+    $description = '';
+    $choices = array(
+        1 => new lang_string('no'),
+        2 => new lang_string('yes')
+    );
+    $default = 2;
+    $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+    $page->add($setting);
+
     $name = 'theme_ned_boost/urlresourcelink';
     $title = get_string('urlresourcelink', 'theme_ned_boost');
     $description = '';

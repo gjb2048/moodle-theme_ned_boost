@@ -27,13 +27,15 @@
 defined('MOODLE_INTERNAL') || die;
 
 class theme_ned_boost_core_course_renderer extends core_course_renderer {
-    private static $theme = null;
+    private static $themesettings = null;
+    private $editingoff;
 
     public function __construct(moodle_page $page, $target) {
         parent::__construct($page, $target);
-        if (empty(self::$theme)) {
-            self::$theme = theme_config::load('ned_boost');
+        if (empty(self::$themesettings)) {
+            self::$themesettings = theme_config::load('ned_boost')->settings;
         }
+        $this->editingoff = !$page->user_is_editing();
     }
 
     /**
@@ -57,15 +59,6 @@ class theme_ned_boost_core_course_renderer extends core_course_renderer {
             return $output;
         }
 
-        // Start of NED Boost specific changes.
-        if (($mod->modname == 'url') && ((!empty(self::$theme->urlresourcelink)) && (self::$theme->urlresourcelink == 2))) {
-            global $DB;
-
-            $modurl = $DB->get_record('url', array('id' => $mod->instance), '*', MUST_EXIST);
-            $url = $modurl->externalurl;
-        }
-        // End of NED Boost specific changes.
-
         // Accessibility: for files get description via icon, this is very ugly hack!
         $instancename = $mod->get_formatted_name();
         $altname = $mod->modfullname;
@@ -86,6 +79,35 @@ class theme_ned_boost_core_course_renderer extends core_course_renderer {
         /* Get on-click attribute value if specified and decode the onclick - it
            has already been encoded for display. */
         $onclick = htmlspecialchars_decode($mod->onclick, ENT_QUOTES);
+
+        // Start of NED Boost specific changes.
+        if ($this->editingoff) {
+            if (($mod->modname == 'url') && ((!empty(self::$themesettings->urlresourcelink)) && (self::$themesettings->urlresourcelink == 2))) {
+                global $DB;
+
+                $modurl = $DB->get_record('url', array('id' => $mod->instance), '*', MUST_EXIST);
+                $url = $modurl->externalurl;
+            }
+            if (($mod->modname == 'questionnaire') && ((!empty(self::$themesettings->questionnaireactivitylink)) && (self::$themesettings->questionnaireactivitylink == 2))) {
+                global $CFG, $DB, $USER;
+                require_once($CFG->dirroot.'/mod/questionnaire/locallib.php');
+                require_once($CFG->dirroot.'/mod/questionnaire/questionnaire.class.php');
+
+                // TODO: Could this be more efficient?
+                list($cm, $course, $questionnaire) = questionnaire_get_standard_page_items($mod->id, null);
+                $questionnaire = new questionnaire(0, $questionnaire, $course, $cm);
+
+                if (($questionnaire->user_can_take($USER->id)) && ($questionnaire->questions)) {
+                    $newurl = new moodle_url('/mod/questionnaire/complete.php', array('id' => $questionnaire->cm->id));
+                    if ($questionnaire->user_has_saved_response($USER->id)) {
+                        $newurl->param('resume', 1);
+                        $instancename .= ' - '.get_string('resumesurvey', 'questionnaire');
+                    }
+                    $url = $newurl;
+                }
+            }
+        }
+        // End of NED Boost specific changes.
 
         // Display link itself.
         $activitylink = html_writer::empty_tag('img', array('src' => $mod->get_icon_url(),
