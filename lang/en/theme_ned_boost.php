@@ -54,8 +54,9 @@ $string['right'] = 'Right';
 $string['thenshow'] = 'then show';
 $string['userolepermission'] = 'Use role permission';
 $string['activitiesandresources'] = 'Activities & Resources';
-$string['jumptomenu'] = '\'Jump to...\' menu';
 $string['forwardbacklinks'] = 'Forward/back links';
+$string['jumptomenu'] = '\'Jump to...\' menu';
+$string['urlresourcelink'] = 'URL Resource - link directly to URL';
 
 $string['colours'] = 'Colours';
 $string['mainbackgroundcolour'] = 'Main background colour';

@@ -1,5 +1,8 @@
 Version Information
 ===================
+Version 3.3.0.1.19
+  1. URL Resource link setting and start of others as appropriate to version - https://www.screencast.com/t/PLIokaxAuMVH.
+
 Version 3.3.0.1.18
   1. Block fa icons not completely showing.
 
