@@ -1,5 +1,8 @@
 Version Information
 ===================
+Version 3.3.0.1.21
+  1. Ensure that block controls are available on empty title blocks when editing.
+
 Version 3.3.0.1.20
   1. Completion of activity navigation settings for M3.4+ - https://www.screencast.com/t/VjAdzirRh.
 

@@ -273,8 +273,10 @@ class core_renderer extends \theme_boost\output\core_renderer {
         $title = $bc->title;
         $showheader = true;
 
-        if (empty($title)) {
-            $showheader = false;
+        if (empty($title)) { 
+            if (!$this->page->user_is_editing()) {
+                $showheader = false;
+            }
         } else {
             $toolbox = \theme_ned_boost\toolbox::get_instance();
             $customiseindividualblocks = $toolbox->get_customiseindividualblocks($this->page->theme);
