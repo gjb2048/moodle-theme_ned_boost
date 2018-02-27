@@ -41,7 +41,6 @@ class toolbox {
     public static $nocolourdelimiter = '-';
 
     private function __construct() {
-        
     }
 
     public static function get_instance() {

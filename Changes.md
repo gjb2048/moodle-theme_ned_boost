@@ -1,5 +1,8 @@
 Version Information
 ===================
+Version 3.3.0.1.20
+  1. Completion of activity navigation settings for M3.4+ - https://www.screencast.com/t/VjAdzirRh.
+
 Version 3.3.0.1.19
   1. URL Resource link setting and start of others as appropriate to version - https://www.screencast.com/t/PLIokaxAuMVH.
 

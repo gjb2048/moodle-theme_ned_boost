@@ -61,7 +61,7 @@ class theme_ned_boost_core_course_renderer extends core_course_renderer {
         if (($mod->modname == 'url') && ((!empty(self::$theme->urlresourcelink)) && (self::$theme->urlresourcelink == 2))) {
             global $DB;
 
-            $modurl = $DB->get_record('url', array('id'=>$mod->instance), '*', MUST_EXIST);
+            $modurl = $DB->get_record('url', array('id' => $mod->instance), '*', MUST_EXIST);
             $url = $modurl->externalurl;
         }
         // End of NED Boost specific changes.
