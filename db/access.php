@@ -40,3 +40,19 @@ $capabilities = array(
         )
     )
 );
+
+global $CFG;
+if ($CFG->branch >= 34) {
+    $capabilities['theme/ned_boost:showavailabilityinfo'] = array(
+        'captype' => 'read',
+        'contextlevel' => CONTEXT_COURSE,
+        'archetypes' => array(
+            'manager' => CAP_ALLOW,
+            'coursecreator' => CAP_ALLOW,
+            'editingteacher' => CAP_ALLOW,
+            'teacher' => CAP_ALLOW,
+            'student' => CAP_ALLOW,
+            'user' => CAP_ALLOW
+        )
+    );
+}

@@ -1,5 +1,8 @@
 Version Information
 ===================
+Version 3.3.0.1.23
+  1. Availability information capability in M3.4+ - https://www.screencast.com/t/LaTiIjrSG8y.
+
 Version 3.3.0.1.22
   1. Questionnaire activity link setting - https://www.screencast.com/t/PLIokaxAuMVH.
 

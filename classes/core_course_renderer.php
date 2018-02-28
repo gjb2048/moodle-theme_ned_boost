@@ -122,4 +122,22 @@ class theme_ned_boost_core_course_renderer extends core_course_renderer {
         }
         return $output;
     }
+
+    /**
+     * Displays availability info for a course section or course module
+     *
+     * @param string $text
+     * @param string $additionalclasses
+     * @return string
+     */
+    public function availability_info($text, $additionalclasses = '') {
+        $showavailabilityinfo = has_capability('theme/ned_boost:showavailabilityinfo', \context_course::instance($this->page->course->id));
+
+        $output = '';
+        if ($showavailabilityinfo) {
+            $output = parent::availability_info($text, $additionalclasses);
+        }
+
+        return $output;
+    }
 }

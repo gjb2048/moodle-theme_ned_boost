@@ -273,7 +273,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
         $title = $bc->title;
         $showheader = true;
 
-        if (empty($title)) { 
+        if (empty($title)) {
             if (!$this->page->user_is_editing()) {
                 $showheader = false;
             }

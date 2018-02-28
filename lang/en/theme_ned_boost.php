@@ -78,4 +78,5 @@ $string['headertextcolour'] = 'header text colour';
 $string['bodybackgroundcolour'] = 'body background colour';
 
 // Capabilities.
+$string['ned_boost:showavailabilityinfo'] = 'View "Not available..." text beneath restricted activities';
 $string['ned_boost:shownavdrawer'] = 'Show hamburger button';
