@@ -1,5 +1,8 @@
 Version Information
 ===================
+Version 3.3.0.1.24
+  1. Add 'Powered by Rosedale' image to header - .
+
 Version 3.3.0.1.23
   1. Availability information capability in M3.4+ - https://www.screencast.com/t/LaTiIjrSG8y.
 
