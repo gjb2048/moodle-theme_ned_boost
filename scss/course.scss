@@ -1,0 +1,19 @@
+// Course.
+.coursebox .content {
+    .courseimage.nedcourseimage {
+        display: inline;
+        float: left;
+        margin-right: 20px;
+        margin-top: 0;
+        width: 40%;
+    }
+
+    .summary.nedcoursesummary {
+        float: none;
+        width: auto;
+    }
+
+    .summary.nedcoursesummary > div {
+        display: inline;
+    }
+}

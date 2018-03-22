@@ -1,5 +1,8 @@
 Version Information
 ===================
+Version 3.3.0.1.25
+  1. Wrap text around course image - https://www.screencast.com/t/A9OXayqk.
+
 Version 3.3.0.1.24
   1. Add 'Powered by Rosedale' image to header - https://www.screencast.com/t/gcGfVrKa.
 
