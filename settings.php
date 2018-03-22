@@ -34,6 +34,19 @@ if ($ADMIN->fulltree) {
     $page->add(new admin_setting_heading('theme_ned_boost_frontpagedashboardlevelheading',
         get_string('frontpagedashboardlevel', 'theme_ned_boost'), ''));
 
+    // Course hamburger button.
+    $name = 'theme_ned_boost/frontpagedashboardhamburgerbutton';
+    $title = get_string('frontpagedashboardhamburgerbutton', 'theme_ned_boost');
+    $description = '';
+    $choices = array(
+        1 => new lang_string('show'),
+        2 => new lang_string('hide'),
+        3 => new lang_string('userolepermission', 'theme_ned_boost')
+    );
+    $default = 1;
+    $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+    $page->add($setting);
+
     // Block width.
     $name = 'theme_ned_boost/frontpagedashboardlevelblockwidth';
     $title = get_string('frontpagedashboardblockwidth', 'theme_ned_boost');

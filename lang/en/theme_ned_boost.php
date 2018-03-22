@@ -45,6 +45,7 @@ $string['formatsettings'] = 'Format';
 $string['frontpagedashboardblockpositions'] = 'Frontpage/Dashboard block positions';
 $string['frontpagedashboardblockwidth'] = 'Frontpage/Dashboard block width';
 $string['frontpagedashboardlevel'] = 'Frontpage/Dashboard level';
+$string['frontpagedashboardhamburgerbutton'] = 'Hamburger button on the Frontpage/Dashboard';
 $string['headerlogo'] = 'Header logo';
 $string['ifinstitution'] = 'If Institution = ';
 $string['ifthen'] = 'If-then';

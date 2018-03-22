@@ -1,5 +1,9 @@
 Version Information
 ===================
+Version 3.3.0.1.26
+  1. Frontpage / Dashboard hamburger button - https://www.screencast.com/t/h3IfatWOy.
+     Note: For the capability 'shownavdrawer' this needs to be set for the site course id being '1' - https://docs.moodle.org/33/en/Context#Graphic_showing_contexts_within_contexts.
+
 Version 3.3.0.1.25
   1. Wrap text around course image - https://www.screencast.com/t/A9OXayqk.
 
