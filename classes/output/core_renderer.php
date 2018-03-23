@@ -109,6 +109,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
         $html .= html_writer::start_div('pull-xs-right');
         $html .= html_writer::div(html_writer::img($this->image_url('pbr', 'theme_ned_boost'), get_string('pbrpix', 'theme_ned_boost')), 'pbrpix');
         $html .= html_writer::div($this->context_header_settings_menu(), 'context-header-settings-menu');
+        $html .= html_writer::div($this->editing_button(), 'editing-button pull-right');
         $html .= html_writer::end_div();
         $html .= html_writer::start_div('pull-xs-left');
         $html .= $this->context_header();
@@ -127,6 +128,110 @@ class core_renderer extends \theme_boost\output\core_renderer {
         $html .= html_writer::end_div();
         $html .= html_writer::end_div();
         $html .= html_writer::end_tag('header');
+        return $html;
+    }
+
+    public function editing_button() {
+        $html = '';
+        if ($this->page->user_allowed_editing()) {
+            $pagetype = $this->page->pagetype;
+            if (strpos($pagetype, 'admin-setting') !== false) {
+                $pagetype = 'admin-setting'; // Deal with all setting page types.
+            } else if ((strpos($pagetype, 'mod-') !== false) &&
+                ((strpos($pagetype, 'edit') !== false) ||
+                 (strpos($pagetype, 'view') !== false) ||
+                 (strpos($pagetype, '-mod') !== false))) {
+                $pagetype = 'mod-edit-view'; // Deal with all mod edit / view / -mod page types.
+            } else if (strpos($pagetype, 'mod-data-field') !== false) {
+                $pagetype = 'mod-data-field'; // Deal with all mod data field page types.
+            } else if (strpos($pagetype, 'mod-lesson') !== false) {
+                $pagetype = 'mod-lesson'; // Deal with all mod lesson page types.
+            }
+            switch ($pagetype) {
+                case 'site-index':
+                case 'calendar-view':  // Slightly faulty as even the navigation link goes back to the frontpage.  TODO: MDL.
+                    $url = new moodle_url('/course/view.php');
+                    $url->param('id', 1);
+                    if ($this->page->user_is_editing()) {
+                        $url->param('edit', 'off');
+                    } else {
+                       $url->param('edit', 'on');
+                    }
+                break;
+                case 'admin-index':
+                case 'admin-setting':
+                    $url = $this->page->url;
+                    if ($this->page->user_is_editing()) {
+                        $url->param('adminedit', 0);
+                    } else {
+                        $url->param('adminedit', 1);
+                    }
+                break;
+                case 'course-index':
+                case 'course-management':
+                case 'course-search':
+                case 'mod-resource-mod':
+                case 'tag-search':
+                    $url = new moodle_url('/tag/search.php');
+                    if ($this->page->user_is_editing()) {
+                        $url->param('edit', 'off');
+                    } else {
+                        $url->param('edit', 'on');
+                    }
+                break;
+                case 'mod-data-field':
+                case 'mod-edit-view':
+                case 'mod-forum-discuss':
+                case 'mod-forum-index':
+                case 'mod-forum-search':
+                case 'mod-forum-subscribers':
+                case 'mod-lesson':
+                case 'mod-quiz-index':
+                case 'mod-scorm-player':
+                    $url = new moodle_url('/course/view.php');
+                    $url->param('id', $this->page->course->id);
+                    $url->param('return', $this->page->url->out_as_local_url(false));
+                    if ($this->page->user_is_editing()) {
+                        $url->param('edit', 'off');
+                    } else {
+                        $url->param('edit', 'on');
+                    }
+                break;
+                case 'my-index':
+                case 'user-profile':
+                    // TODO: Not sure how to get 'id' param and if it is really needed.
+                    $url = $this->page->url;
+                    // Umm! Both /user/profile.php and /user/profilesys.php have the same page type but different parameters!
+                    if ($this->page->user_is_editing()) {
+                        $url->param('adminedit', 0);
+                        $url->param('edit', 0);
+                    } else {
+                        $url->param('adminedit', 1);
+                        $url->param('edit', 1);
+                    }
+                break;
+                default:
+                    $url = $this->page->url;
+                    if ($this->page->user_is_editing()) {
+                        $url->param('edit', 'off');
+                    } else {
+                        $url->param('edit', 'on');
+                    }
+                break;
+            }
+
+            $url->param('sesskey', sesskey());
+            if ($this->page->user_is_editing()) {
+                $editstring = get_string('turneditingoff');
+                $colourclass = 'edit-on';
+            } else {
+                $editstring = get_string('turneditingon');
+                $colourclass = 'edit-off';
+            }
+            $edit = $this->getfontawesomemarkup('pencil-square-o', array('fa-fw'));
+            $html = html_writer::link($url, $edit, array('title' => $editstring, 'class' => $colourclass));
+        }
+
         return $html;
     }
 
@@ -455,5 +560,12 @@ class core_renderer extends \theme_boost\output\core_renderer {
         $activitynav = new \core_course\output\activity_navigation($prevmod, $nextmod, $activitylist);
         $renderer = $this->page->get_renderer('core', 'course');
         return $renderer->render($activitynav);
+    }
+
+    public function getfontawesomemarkup($theicon, $classes = array(), $attributes = array(), $content = '') {
+        $classes[] = 'fa fa-'.$theicon;
+        $attributes['aria-hidden'] = 'true';
+        $attributes['class'] = implode(' ', $classes);
+        return html_writer::tag('span', $content, $attributes);
     }
 }

@@ -17,3 +17,26 @@
         display: inline;
     }
 }
+
+.editing-button {
+    font-size: 24px;
+
+    a {
+        border-radius: 4px;
+        color: #eee;
+        margin-right: 4px;
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+    a:hover,
+    a:focus {
+        color: #fff;
+    }
+
+    .edit-off {
+        background-color: #7092BE;
+    }
+    .edit-on {
+        background-color: #1D9D74;
+    }
+}
