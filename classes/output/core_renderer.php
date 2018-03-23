@@ -100,8 +100,6 @@ class core_renderer extends \theme_boost\output\core_renderer {
      * @return string HTML to display the main header.
      */
     public function full_header() {
-        global $PAGE;
-
         $html = html_writer::start_tag('header', array('id' => 'page-header', 'class' => 'row'));
         $html .= html_writer::start_div('col-xs-12 p-a-1');
         $html .= html_writer::start_div('card');
@@ -114,8 +112,10 @@ class core_renderer extends \theme_boost\output\core_renderer {
         $html .= html_writer::start_div('pull-xs-left');
         $html .= $this->context_header();
         $html .= html_writer::end_div();
+        
         $pageheadingbutton = $this->page_heading_button();
-        if (empty($PAGE->layout_options['nonavbar'])) {
+        if ((empty($this->page->layout_options['nonavbar'])) &&
+             (!(($this->page->pagelayout == 'course') || ($this->page->pagelayout == 'incourse')))) {
             $html .= html_writer::start_div('clearfix w-100 pull-xs-left', array('id' => 'page-navbar'));
             $html .= html_writer::tag('div', $this->navbar(), array('class' => 'breadcrumb-nav'));
             $html .= html_writer::div($pageheadingbutton, 'breadcrumb-button pull-xs-right');
@@ -356,6 +356,13 @@ class core_renderer extends \theme_boost\output\core_renderer {
         $extraclasses = $this->get_navdraweropen($templatecontext, $shownavdrawer);
         $bodyattributes = $this->body_attributes($extraclasses);
         $templatecontext['bodyattributes'] = $bodyattributes;
+
+        if (empty($this->page->layout_options['nonavbar'])) {
+            $navbaritems = $this->page->navbar->get_items();
+            $navbaritems = array_slice($navbaritems, 2);
+            $navbarcontext = ['get_items' => $navbaritems];
+            $templatecontext['headernavbar'] = html_writer::div($this->render_from_template('core/navbar', $navbarcontext), 'coursenavbar');
+        }
 
         $position = (!empty($this->page->theme->settings->courselevelblockpositions)) ? $this->page->theme->settings->courselevelblockpositions : 2; // Right.
         $this->determine_dynamic_block_positions($templatecontext, $position);
