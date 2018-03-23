@@ -1,5 +1,8 @@
 Version Information
 ===================
+Version 3.3.0.1.29
+  1. Course name - https://www.screencast.com/t/PuJ68Rhxg4EN.
+
 Version 3.3.0.1.28
   1. Course navbar - https://www.screencast.com/t/PuJ68Rhxg4EN.
 

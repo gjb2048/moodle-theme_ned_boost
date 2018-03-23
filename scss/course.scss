@@ -48,3 +48,23 @@
         margin-right: 1rem;
     }
 }
+
+.acourse {
+    .card {
+        background-color: #C9C9C9;
+        border-bottom: 2px solid #fff;
+    }
+    .nedcoursename {
+        position: relative;
+        .page-context-header {
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            .page-header-headings {
+                float: none;
+                text-align: center;
+            }
+        }
+    }
+}
