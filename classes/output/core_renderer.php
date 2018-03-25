@@ -125,7 +125,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
         }
         $html .= $this->context_header();
         $html .= html_writer::end_div();
-        
+
         $pageheadingbutton = $this->page_heading_button();
         if ((empty($this->page->layout_options['nonavbar'])) &&
              (!(($this->page->pagelayout == 'course') || ($this->page->pagelayout == 'incourse')))) {
@@ -183,7 +183,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
                     if ($this->page->user_is_editing()) {
                         $url->param('edit', 'off');
                     } else {
-                       $url->param('edit', 'on');
+                        $url->param('edit', 'on');
                     }
                 break;
                 case 'admin-index':
