@@ -31,7 +31,7 @@ $string['pluginname'] = 'NED Boost';
 $string['region-side-pre'] = 'Pre';
 $string['region-side-post'] = 'Post';
 
-$string['pbrpix'] = 'Powered by Rosedale';
+$string['pbrpix'] = 'Site logo';
 
 // Settings.
 $string['blockwidthdesc'] = 'Block width in pixels';

@@ -110,7 +110,9 @@ class core_renderer extends \theme_boost\output\core_renderer {
         $html .= html_writer::start_div('card');
         $html .= html_writer::start_div('card-block');
         $html .= html_writer::start_div('pull-xs-right');
-        $html .= html_writer::div(html_writer::img($this->image_url('pbr', 'theme_ned_boost'), get_string('pbrpix', 'theme_ned_boost')), 'pbrpix');
+        if (($this->page->pagelayout == 'dashboard') || ($this->page->pagelayout == 'frontpage')) {
+            $html .= html_writer::div(html_writer::img($this->image_url('pbr', 'theme_ned_boost'), get_string('pbrpix', 'theme_ned_boost')), 'pbrpix');
+        }
         $html .= html_writer::div($this->context_header_settings_menu(), 'context-header-settings-menu');
         if ($acourse) {
             $html .= html_writer::div($this->editing_button(), 'editing-button pull-right');
@@ -140,6 +142,21 @@ class core_renderer extends \theme_boost\output\core_renderer {
         $html .= html_writer::end_div();
         $html .= html_writer::end_tag('header');
         return $html;
+    }
+
+    /**
+     * Whether we should display the logo in the navbar.
+     *
+     * We will when there are no main logos, and we have compact logo.
+     *
+     * @return bool
+     */
+    public function should_display_navbar_logo() {
+        if (($this->page->pagelayout == 'course') || ($this->page->pagelayout == 'incourse')) {
+            return false;
+        }
+        $logo = $this->get_compact_logo_url();
+        return !empty($logo) && !$this->should_display_main_logo();
     }
 
     public function editing_button() {
@@ -367,6 +384,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
         $extraclasses = $this->get_navdraweropen($templatecontext, $shownavdrawer);
         $bodyattributes = $this->body_attributes($extraclasses);
         $templatecontext['bodyattributes'] = $bodyattributes;
+        $templatecontext['homeicon'] = true;
 
         if (empty($this->page->layout_options['nonavbar'])) {
             $navbaritems = $this->page->navbar->get_items();

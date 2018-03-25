@@ -1,5 +1,8 @@
 Version Information
 ===================
+Version 3.3.0.1.30
+  1. Replace logo, tidy course header and sort out home button - https://www.screencast.com/t/7uompIoL and https://www.screencast.com/t/PuJ68Rhxg4EN.
+
 Version 3.3.0.1.29
   1. Course name - https://www.screencast.com/t/PuJ68Rhxg4EN.
 
