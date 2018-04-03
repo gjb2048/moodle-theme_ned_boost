@@ -1,5 +1,8 @@
 Version Information
 ===================
+Version 3.3.0.1.31
+  1. Fix course header editing buttons not clickable.
+
 Version 3.3.0.1.30
   1. Replace logo, tidy course header and sort out home button - https://www.screencast.com/t/7uompIoL and https://www.screencast.com/t/PuJ68Rhxg4EN.
 
