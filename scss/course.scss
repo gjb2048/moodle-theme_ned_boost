@@ -1,23 +1,4 @@
 // Course.
-.coursebox .content {
-    .courseimage.nedcourseimage {
-        display: inline;
-        float: left;
-        margin-right: 20px;
-        margin-top: 0;
-        width: 40%;
-    }
-
-    .summary.nedcoursesummary {
-        float: none;
-        width: auto;
-    }
-
-    .summary.nedcoursesummary > div {
-        display: inline;
-    }
-}
-
 .editing-button {
     font-size: 24px;
 
@@ -50,6 +31,13 @@
 }
 
 .acourse {
+    margin-left: -(2 * $spacer);
+    margin-right: -(2 * $spacer);
+    > div {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        padding-top: 0 !important;
+    }
     .card {
         background-color: #C9C9C9;
         border-bottom: 2px solid #fff;

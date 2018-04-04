@@ -1,5 +1,9 @@
 Version Information
 ===================
+Version 3.3.0.1.32
+  1. Remove https://github.com/fernandooliveira/moodle-theme_ned_boost/commit/dfd8f331c1a90428fca9fa400f07a222c2b2f7d6 and put in a separate branch: https://github.com/fernandooliveira/moodle-theme_ned_boost/tree/master_wtaci - Wrap text around course image - https://www.screencast.com/t/A9OXayqk.
+  2. Remove space around header - https://www.screencast.com/t/rqowWpW3u.
+
 Version 3.3.0.1.31
   1. Fix course header editing buttons not clickable.
 
