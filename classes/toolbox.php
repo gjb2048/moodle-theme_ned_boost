@@ -96,6 +96,7 @@ class toolbox {
         $scss .= $this->set_frontpagedashboard_blocks($theme);
         $scss .= $this->set_course_blocks($theme);
         $scss .= $this->set_block_header($theme);
+        $scss .= $this->set_page_module_date($theme);
 
         return $scss;
     }
@@ -228,6 +229,18 @@ class toolbox {
                 $scss .= 'background-color: '.$blocksettings[self::$bodybackgroundcolourkey].';';
                 $scss .= '}';
             }
+        }
+
+        return $scss;
+    }
+
+    protected function set_page_module_date($theme) {
+        $scss = '';
+
+        if ((!empty($theme->settings->pagedateshowhide)) && ($theme->settings->pagedateshowhide == 1)) {
+            $scss .= '.path-mod-page #region-main .card > div > .modified {';
+            $scss .= 'display: none;';
+            $scss .= '}';
         }
 
         return $scss;

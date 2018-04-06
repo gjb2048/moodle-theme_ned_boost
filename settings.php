@@ -263,6 +263,7 @@ if ($ADMIN->fulltree) {
         );
         $default = 1;
         $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+        $setting->set_updatedcallback('theme_reset_all_caches');
         $page->add($setting);
 
         $name = 'theme_ned_boost/forwardbacklinks';
@@ -274,8 +275,21 @@ if ($ADMIN->fulltree) {
         );
         $default = 1;
         $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+        $setting->set_updatedcallback('theme_reset_all_caches');
         $page->add($setting);
     }
+
+    $name = 'theme_ned_boost/pagedateshowhide';
+    $title = get_string('pagedateshowhide', 'theme_ned_boost');
+    $description = '';
+    $choices = array(
+        1 => new lang_string('hide'),
+        2 => new lang_string('show')
+    );
+    $default = 2;
+    $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
 
     $settings->add($page);
 }

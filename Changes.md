@@ -1,5 +1,8 @@
 Version Information
 ===================
+Version 3.3.0.1.35
+  1. Add page module show hide date setting https://www.screencast.com/t/jQPkwhiMZrAv and https://www.screencast.com/t/bd8aymZ9v.
+
 Version 3.3.0.1.34
   1. Remove Debug HTML comments for https://www.screencast.com/t/9juU1cbm3oc4.
 
