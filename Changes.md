@@ -1,5 +1,8 @@
 Version Information
 ===================
+Version 3.3.0.1.34
+  1. Remove Debug HTML comments for https://www.screencast.com/t/9juU1cbm3oc4.
+
 Version 3.3.0.1.33
   1. Debug HTML comments for https://www.screencast.com/t/9juU1cbm3oc4 - DO NOT USE ON PRODUCTION.
 

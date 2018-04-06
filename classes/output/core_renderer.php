@@ -595,7 +595,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
 
         $activitynav = new \core_course\output\activity_navigation($prevmod, $nextmod, $activitylist);
         $renderer = $this->page->get_renderer('core', 'course');
-        return $renderer->render($activitynav).'<!-- NB AN Debug: JT: '.$this->page->theme->settings->jumptomenu.' FB: '.$this->page->theme->settings->forwardbacklinks.' -->';
+        return $renderer->render($activitynav);
     }
 
     public function getfontawesomemarkup($theicon, $classes = array(), $attributes = array(), $content = '') {
