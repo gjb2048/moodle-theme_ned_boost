@@ -40,10 +40,17 @@
     }
     .card {
         background-color: #C9C9C9;
-        border-bottom: 2px solid #fff;
+        border-bottom: 5px solid #fff;
         .acoursemenus {
             position: relative;
             z-index: 1;
+        }
+        .card-block {
+            padding-bottom: 1rem;
+            padding-top: 1rem;
+            .nedcoursename h1 {
+                font-size: 2rem;
+            }
         }
     }
     .nedcoursename {

@@ -81,6 +81,12 @@ class toolbox {
             $scss .= file_get_contents($CFG->themedir.'/ned_boost/scss/blocks.scss');
         }
 
+        if (file_exists("{$CFG->dirroot}/theme/ned_boost/scss/core.scss")) {
+            $scss .= file_get_contents($CFG->dirroot.'/theme/ned_boost/scss/core.scss');
+        } else if (!empty($CFG->themedir) && file_exists("{$CFG->themedir}/ned_boost/scss/core.scss")) {
+            $scss .= file_get_contents($CFG->themedir.'/ned_boost/scss/core.scss');
+        }
+
         if (file_exists("{$CFG->dirroot}/theme/ned_boost/scss/course.scss")) {
             $scss .= file_get_contents($CFG->dirroot.'/theme/ned_boost/scss/course.scss');
         } else if (!empty($CFG->themedir) && file_exists("{$CFG->themedir}/ned_boost/scss/course.scss")) {
