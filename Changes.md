@@ -1,5 +1,8 @@
 Version Information
 ===================
+Version 3.3.0.1.37
+  1. Add FontAwesome support to activity / resource titles - https://www.screencast.com/t/KLWpYJYz70.
+
 Version 3.3.0.1.36
   1. Changes - https://www.screencast.com/t/iGhy50f0D0i.
 
@@ -62,7 +65,7 @@ Version 3.3.0.1.18
 Version 3.3.0.1.17
   1. Block adjustments reduced height https://www.screencast.com/t/tZjtZA0UC.
 
-  Version 3.3.0.1.16
+Version 3.3.0.1.16
   1. Block adjustments https://www.screencast.com/t/tZjtZA0UC.
 
 Version 3.3.0.1.15

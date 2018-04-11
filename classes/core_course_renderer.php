@@ -110,9 +110,16 @@ class theme_ned_boost_core_course_renderer extends core_course_renderer {
         // End of NED Boost specific changes.
 
         // Display link itself.
+
+        // Start of NED Boost specific changes.
+        // We should search only for reference to FontAwesome icons.  From the FontAwesome filter: https://moodle.org/plugins/pluginversions.php?plugin=filter_fontawesome.
+        $fasearch = "(\[(fa-.*?)\])is";
+        $instancename = preg_replace_callback($fasearch, array($this, 'fa_callback'), $instancename);
+        // End of NED Boost specific changes.
+
         $activitylink = html_writer::empty_tag('img', array('src' => $mod->get_icon_url(),
-                'class' => 'iconlarge activityicon', 'alt' => ' ', 'role' => 'presentation')) .
-                html_writer::tag('span', $instancename . $altname, array('class' => 'instancename'));
+            'class' => 'iconlarge activityicon', 'alt' => ' ', 'role' => 'presentation')) .
+            html_writer::tag('span', $instancename . $altname, array('class' => 'instancename'));
         if ($mod->uservisible) {
             $output .= html_writer::link($url, $activitylink, array('class' => $linkclasses, 'onclick' => $onclick));
         } else {
@@ -121,6 +128,10 @@ class theme_ned_boost_core_course_renderer extends core_course_renderer {
             $output .= html_writer::tag('div', $activitylink, array('class' => $textclasses));
         }
         return $output;
+    }
+
+    private function fa_callback(array $matches) {
+        return '<i class="fa '.$matches[1].'"></i>';
     }
 
     /**
