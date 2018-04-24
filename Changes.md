@@ -1,5 +1,8 @@
 Version Information
 ===================
+Version 3.3.0.1.39
+  1. Fix content margins when small screen size - less than 1200px.
+
 Version 3.3.0.1.38
   1. Blocks are not responsive - https://www.screencast.com/t/6tcaG9rIImh.
 
