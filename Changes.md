@@ -1,5 +1,8 @@
 Version Information
 ===================
+Version 3.3.0.1.38
+  1. Blocks are not responsive - https://www.screencast.com/t/6tcaG9rIImh.
+
 Version 3.3.0.1.37
   1. Add FontAwesome support to activity / resource titles - https://www.screencast.com/t/KLWpYJYz70.
 

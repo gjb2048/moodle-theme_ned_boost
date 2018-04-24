@@ -116,23 +116,25 @@ class toolbox {
         $singlewidth = 280;
         $doublewidth = 560;
         if (!empty($theme->settings->frontpagedashboardlevelblockwidth)) {
-            $scss .= '.pagelayout-mydashboard [data-region="blocks-column"],';
-            $scss .= '.pagelayout-frontpage [data-region="blocks-column"] {';
-            $scss .= 'width: '.$theme->settings->frontpagedashboardlevelblockwidth.'px;';
-            $scss .= '}';
             $singlewidth = $theme->settings->frontpagedashboardlevelblockwidth + 30;
             $doublewidth = ($theme->settings->frontpagedashboardlevelblockwidth * 2) + 60;
-            if ($theme->settings->frontpagedashboardlevelblockpositions != 2) { // Not right.
-                $scss .= '.pagelayout-mydashboard [data-region="blocks-column"].side-pre,';
-                $scss .= '.pagelayout-frontpage [data-region="blocks-column"].side-pre {';
-                $scss .= 'float: left;';
-                $scss .= '}';
-                $scss .= '.pagelayout-mydashboard #region-main.has-blocks,';
-                $scss .= '.pagelayout-frontpage #region-main.has-blocks {';
-                $scss .= 'margin-left: 30px;';
-                $scss .= '}';
-            }
         }
+        $scss .= '.pagelayout-mydashboard [data-region="blocks-column"],';
+        $scss .= '.pagelayout-frontpage [data-region="blocks-column"] {';
+        $scss .= 'width: '.($singlewidth - 30).'px;';
+        $scss .= '}';
+        if ((!empty($theme->settings->frontpagedashboardlevelblockpositions)) &&
+            ($theme->settings->frontpagedashboardlevelblockpositions != 2)) { // Not right.
+            $scss .= '.pagelayout-mydashboard [data-region="blocks-column"].side-pre,';
+            $scss .= '.pagelayout-frontpage [data-region="blocks-column"].side-pre {';
+            $scss .= 'float: left;';
+            $scss .= '}';
+            $scss .= '.pagelayout-mydashboard #region-main.has-blocks,';
+            $scss .= '.pagelayout-frontpage #region-main.has-blocks {';
+            $scss .= 'margin-left: 30px;';
+            $scss .= '}';
+        }
+
         $scss .= '.pagelayout-mydashboard #region-main-settings-menu.has-blocks,';
         $scss .= '.pagelayout-mydashboard #region-main.has-blocks,';
         $scss .= '.pagelayout-frontpage #region-main-settings-menu.has-blocks,';
@@ -146,6 +148,21 @@ class toolbox {
         $scss .= 'width: calc(100% - '.$doublewidth.'px);';
         $scss .= '}';
 
+        $scss .= '.pagelayout-mydashboard [data-region="blocks-column"],';
+        $scss .= '.pagelayout-frontpage [data-region="blocks-column"],';
+        $scss .= '.pagelayout-mydashboard #region-main-settings-menu.has-blocks,';
+        $scss .= '.pagelayout-mydashboard #region-main.has-blocks,';
+        $scss .= '.pagelayout-frontpage #region-main-settings-menu.has-blocks,';
+        $scss .= '.pagelayout-frontpage #region-main.has-blocks,';
+        $scss .= '.pagelayout-mydashboard #region-main-settings-menu.both-blocks,';
+        $scss .= '.pagelayout-mydashboard #region-main.both-blocks,';
+        $scss .= '.pagelayout-frontpage #region-main-settings-menu.both-blocks,';
+        $scss .= '.pagelayout-frontpage #region-main.both-blocks {';
+        $scss .= '    @include media-breakpoint-down(lg) {';
+        $scss .= '        width: 100%;';
+        $scss .= '    }';
+        $scss .= '}';
+
         return $scss;
     }
 
@@ -154,23 +171,25 @@ class toolbox {
         $singlewidth = 280;
         $doublewidth = 560;
         if (!empty($theme->settings->courselevelblockwidth)) {
-            $scss .= '.pagelayout-course [data-region="blocks-column"],';
-            $scss .= '.pagelayout-incourse [data-region="blocks-column"] {';
-            $scss .= 'width: '.$theme->settings->courselevelblockwidth.'px;';
-            $scss .= '}';
             $singlewidth = $theme->settings->courselevelblockwidth + 30;
             $doublewidth = ($theme->settings->courselevelblockwidth * 2) + 60;
-            if ($theme->settings->courselevelblockpositions != 2) { // Not right.
-                $scss .= '.pagelayout-course [data-region="blocks-column"].side-pre,';
-                $scss .= '.pagelayout-incourse [data-region="blocks-column"].side-pre {';
-                $scss .= 'float: left;';
-                $scss .= '}';
-                $scss .= '.pagelayout-course #region-main.has-blocks,';
-                $scss .= '.pagelayout-incourse #region-main.has-blocks {';
-                $scss .= 'margin-left: 30px;';
-                $scss .= '}';
-            }
         }
+        $scss .= '.pagelayout-course [data-region="blocks-column"],';
+        $scss .= '.pagelayout-incourse [data-region="blocks-column"] {';
+        $scss .= 'width: '.($singlewidth - 30).'px;';
+        $scss .= '}';
+        if ((!empty($theme->settings->courselevelblockpositions)) &&
+            ($theme->settings->courselevelblockpositions != 2)) { // Not right.
+            $scss .= '.pagelayout-course [data-region="blocks-column"].side-pre,';
+            $scss .= '.pagelayout-incourse [data-region="blocks-column"].side-pre {';
+            $scss .= 'float: left;';
+            $scss .= '}';
+            $scss .= '.pagelayout-course #region-main.has-blocks,';
+            $scss .= '.pagelayout-incourse #region-main.has-blocks {';
+            $scss .= 'margin-left: 30px;';
+            $scss .= '}';
+        }
+
         $scss .= '.pagelayout-course #region-main-settings-menu.has-blocks,';
         $scss .= '.pagelayout-course #region-main.has-blocks,';
         $scss .= '.pagelayout-incourse #region-main-settings-menu.has-blocks,';
@@ -182,6 +201,21 @@ class toolbox {
         $scss .= '.pagelayout-incourse #region-main-settings-menu.has-blocks.both-blocks,';
         $scss .= '.pagelayout-incourse #region-main.has-blocks.both-blocks {';
         $scss .= 'width: calc(100% - '.$doublewidth.'px);';
+        $scss .= '}';
+
+        $scss .= '.pagelayout-course [data-region="blocks-column"],';
+        $scss .= '.pagelayout-incourse [data-region="blocks-column"],';
+        $scss .= '.pagelayout-course #region-main-settings-menu.has-blocks,';
+        $scss .= '.pagelayout-course #region-main.has-blocks,';
+        $scss .= '.pagelayout-incourse #region-main-settings-menu.has-blocks,';
+        $scss .= '.pagelayout-incourse #region-main.has-blocks,';
+        $scss .= '.pagelayout-course #region-main-settings-menu.both-blocks,';
+        $scss .= '.pagelayout-course #region-main.both-blocks,';
+        $scss .= '.pagelayout-incourse #region-main-settings-menu.both-blocks,';
+        $scss .= '.pagelayout-incourse #region-main.both-blocks {';
+        $scss .= '    @include media-breakpoint-down(lg) {';
+        $scss .= '        width: 100%;';
+        $scss .= '    }';
         $scss .= '}';
 
         return $scss;
