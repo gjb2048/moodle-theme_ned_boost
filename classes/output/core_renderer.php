@@ -109,6 +109,14 @@ class core_renderer extends \theme_boost\output\core_renderer {
         $html .= html_writer::start_div('col-xs-12 p-a-1');
         $html .= html_writer::start_div('card');
         $html .= html_writer::start_div('card-block');
+
+        if (!$acourse) {
+            $html .= html_writer::start_div('pull-xs-left');
+        } else {
+            $html .= html_writer::start_div('nedcoursename');
+        }
+        $html .= $this->context_header();
+        $html .= html_writer::end_div();
         $html .= html_writer::start_div('pull-xs-right acoursemenus');
         if (($this->page->pagelayout == 'dashboard') || ($this->page->pagelayout == 'frontpage')) {
             $html .= html_writer::div(html_writer::img($this->image_url('pbr', 'theme_ned_boost'), get_string('pbrpix', 'theme_ned_boost')), 'pbrpix');
@@ -117,13 +125,6 @@ class core_renderer extends \theme_boost\output\core_renderer {
         if ($acourse) {
             $html .= html_writer::div($this->editing_button(), 'editing-button pull-right');
         }
-        $html .= html_writer::end_div();
-        if (!$acourse) {
-            $html .= html_writer::start_div('pull-xs-left');
-        } else {
-            $html .= html_writer::start_div('nedcoursename');
-        }
-        $html .= $this->context_header();
         $html .= html_writer::end_div();
 
         $pageheadingbutton = $this->page_heading_button();

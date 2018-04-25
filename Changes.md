@@ -1,5 +1,8 @@
 Version Information
 ===================
+Version 3.3.0.1.41
+  1. Make the logo responsive - https://www.screencast.com/t/yVx9eDUqts7.
+
 Version 3.3.0.1.40
   1. Make the logo responsive - https://www.screencast.com/t/VugotN1jw8m.
 

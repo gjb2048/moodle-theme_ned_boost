@@ -104,6 +104,12 @@ class toolbox {
         $scss .= $this->set_block_header($theme);
         $scss .= $this->set_page_module_date($theme);
 
+        if (file_exists("{$CFG->dirroot}/theme/ned_boost/scss/custom.scss")) {
+            $scss .= file_get_contents($CFG->dirroot.'/theme/ned_boost/scss/custom.scss');
+        } else if (!empty($CFG->themedir) && file_exists("{$CFG->themedir}/ned_boost/scss/custom.scss")) {
+            $scss .= file_get_contents($CFG->themedir.'/ned_boost/scss/custom.scss');
+        }
+
         return $scss;
     }
 
