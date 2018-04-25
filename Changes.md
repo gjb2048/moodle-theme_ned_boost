@@ -1,5 +1,8 @@
 Version Information
 ===================
+Version 3.3.0.1.40
+  1. Make the logo responsive - https://www.screencast.com/t/VugotN1jw8m.
+
 Version 3.3.0.1.39
   1. Fix content margins when small screen size - less than 1200px.
 

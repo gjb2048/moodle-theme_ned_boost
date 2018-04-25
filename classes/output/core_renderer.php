@@ -159,6 +159,25 @@ class core_renderer extends \theme_boost\output\core_renderer {
         return !empty($logo) && !$this->should_display_main_logo();
     }
 
+    /**
+     * Override to inject the logo.
+     *
+     * @param array $headerinfo The header info.
+     * @param int $headinglevel What level the 'h' tag will be.
+     * @return string HTML for the header bar.
+     */
+    public function context_header($headerinfo = null, $headinglevel = 1) {
+        global $SITE;
+
+        if ($this->should_display_main_logo($headinglevel)) {
+            $sitename = format_string($SITE->fullname, true, array('context' => \context_course::instance(SITEID)));
+            return html_writer::div(html_writer::empty_tag('img', [
+                'src' => $this->get_logo_url(null, 150), 'alt' => $sitename, 'class' => 'img-responsive']), 'logo');
+        }
+
+        return \core_renderer::context_header($headerinfo, $headinglevel); // Bypass Boost's method.
+    }
+
     public function editing_button() {
         $html = '';
         if ($this->page->user_allowed_editing()) {
