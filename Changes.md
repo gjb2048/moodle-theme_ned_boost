@@ -1,5 +1,8 @@
 Version Information
 ===================
+Version 3.3.0.1.42
+  1. Make course summary image a link to the course - .
+
 Version 3.3.0.1.41
   1. Make the logo responsive - https://www.screencast.com/t/yVx9eDUqts7.
 
