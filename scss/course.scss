@@ -71,3 +71,18 @@
 .section .activity .instancename .fa {
     display: inline;
 }
+
+.coursebox .content .courseimage,
+.coursebox .content .summary {
+    @include media-breakpoint-down(sm) {
+        margin: 0;
+        width: 100%;
+    }
+}
+
+.coursebox .content .courseimage img {
+    display: block;
+    height: auto;
+    max-height: none;
+    max-width: 100%;
+}
