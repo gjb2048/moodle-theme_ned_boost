@@ -1,5 +1,8 @@
 Version Information
 ===================
+Version 3.3.0.1.44
+  1. Add missing 'choosereadme' string.
+
 Version 3.3.0.1.43
   1. Attempt to fix course suumary image on mobiles - https://www.screencast.com/t/Y2lhzIOQRR.
 

@@ -30,6 +30,7 @@ $string['configtitle'] = 'NED Boost';
 $string['pluginname'] = 'NED Boost';
 $string['region-side-pre'] = 'Pre';
 $string['region-side-post'] = 'Post';
+$string['choosereadme'] = 'NED Boost.';
 
 $string['pbrpix'] = 'Site logo';
 
