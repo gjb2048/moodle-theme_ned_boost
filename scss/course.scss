@@ -15,10 +15,24 @@
     }
 
     .edit-off {
-        background-color: #7092BE;
+        background-color: #5a5a5a;
     }
     .edit-on {
-        background-color: #1D9D74;
+        background-color: #22ad4a;
+    }
+}
+
+.context-header-settings-menu {
+    background-color: #5a5a5a;
+    border-radius: 4px;
+    height: 34px;
+    margin-top: 0;
+    padding: 4px;
+    .dropdown-toggle {
+        color: #eee;
+        .icon {
+            color: inherit;
+        }
     }
 }
 

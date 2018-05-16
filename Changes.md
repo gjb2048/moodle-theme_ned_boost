@@ -1,5 +1,8 @@
 Version Information
 ===================
+Version 3.3.0.1.45
+  1. Changes to icons: https://www.screencast.com/t/xSopHTRBWsAL.
+
 Version 3.3.0.1.44
   1. Add missing 'choosereadme' string.
 
