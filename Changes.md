@@ -1,5 +1,8 @@
 Version Information
 ===================
+Version 3.3.0.1.46
+  1. Changes to header: https://www.screencast.com/t/d1LlNlqLbdxs - not NED Category icon yet.
+
 Version 3.3.0.1.45
   1. Changes to icons: https://www.screencast.com/t/xSopHTRBWsAL.
 
