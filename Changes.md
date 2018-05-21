@@ -1,5 +1,8 @@
 Version Information
 ===================
+Version 3.3.0.1.47
+  1. Category icons: https://www.screencast.com/t/d1LlNlqLbdxs - now depends on the NED Controller being installed.
+
 Version 3.3.0.1.46
   1. Changes to header: https://www.screencast.com/t/d1LlNlqLbdxs - not NED Category icon yet.
 

@@ -102,8 +102,19 @@ class core_renderer extends \theme_boost\output\core_renderer {
     public function full_header() {
         $acourse = (($this->page->pagelayout == 'course') || ($this->page->pagelayout == 'incourse'));
         $pageheaderclass = 'row';
+        $headerinfo = null;
         if ($acourse) {
             $pageheaderclass .= ' acourse';
+
+            $nctoolbox = \local_ned_controller\toolbox::get_instance();
+            $categoryicons = $nctoolbox->get_categoryicons();
+            if (!empty($categoryicons)) {
+                $category = \coursecat::get($this->get_current_category());
+                if ((!empty($category)) && (array_key_exists($category->name, $categoryicons))) {
+                    $toolbox = \theme_ned_boost\toolbox::get_instance();
+                    $headerinfo = array('heading' => $toolbox->getfontawesomemarkup($categoryicons[$category->name][\local_ned_controller\toolbox::$fontawesomekey]).' '.$this->page->heading);
+                }
+            }
         }
         $html = html_writer::start_tag('header', array('id' => 'page-header', 'class' => $pageheaderclass));
         $html .= html_writer::start_div('col-xs-12 p-a-1');
@@ -115,13 +126,16 @@ class core_renderer extends \theme_boost\output\core_renderer {
         } else {
             $html .= html_writer::start_div('nedcoursename');
         }
-        $html .= $this->context_header();
+        $html .= $this->context_header($headerinfo);
         $html .= html_writer::end_div();
         $html .= html_writer::start_div('pull-xs-right acoursemenus');
         if (($this->page->pagelayout == 'dashboard') || ($this->page->pagelayout == 'frontpage')) {
             $html .= html_writer::div(html_writer::img($this->image_url('pbr', 'theme_ned_boost'), get_string('pbrpix', 'theme_ned_boost')), 'pbrpix');
         }
-        $html .= html_writer::div($this->context_header_settings_menu(), 'context-header-settings-menu');
+        $contextheadersettingsmenu = $this->context_header_settings_menu();
+        if (!empty($contextheadersettingsmenu)) {
+            $html .= html_writer::div($contextheadersettingsmenu, 'context-header-settings-menu');
+        }
         if ($acourse) {
             $html .= html_writer::div($this->editing_button(), 'editing-button pull-right');
         }
@@ -143,6 +157,19 @@ class core_renderer extends \theme_boost\output\core_renderer {
         $html .= html_writer::end_div();
         $html .= html_writer::end_tag('header');
         return $html;
+    }
+
+    protected function get_current_category() {
+        $catid = 0;
+
+        if (is_array($this->page->categories)) {
+            $catids = array_keys($this->page->categories);
+            $catid = reset($catids);
+        } else if (!empty($this->page->course->category)) {
+            $catid = $this->page->course->category;
+        }
+
+        return $catid;
     }
 
     /**
@@ -276,7 +303,8 @@ class core_renderer extends \theme_boost\output\core_renderer {
                 $editstring = get_string('turneditingon');
                 $colourclass = 'edit-off';
             }
-            $edit = $this->getfontawesomemarkup('pencil-square-o', array('fa-fw'));
+            $toolbox = \theme_ned_boost\toolbox::get_instance();
+            $edit = $toolbox->getfontawesomemarkup('fa fa-pencil-square-o', array('fa-fw'));
             $html = html_writer::link($url, $edit, array('title' => $editstring, 'class' => $colourclass));
         }
 
@@ -616,12 +644,5 @@ class core_renderer extends \theme_boost\output\core_renderer {
         $activitynav = new \core_course\output\activity_navigation($prevmod, $nextmod, $activitylist);
         $renderer = $this->page->get_renderer('core', 'course');
         return $renderer->render($activitynav);
-    }
-
-    public function getfontawesomemarkup($theicon, $classes = array(), $attributes = array(), $content = '') {
-        $classes[] = 'fa fa-'.$theicon;
-        $attributes['aria-hidden'] = 'true';
-        $attributes['class'] = implode(' ', $classes);
-        return html_writer::tag('span', $content, $attributes);
     }
 }
