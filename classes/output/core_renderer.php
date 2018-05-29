@@ -112,7 +112,9 @@ class core_renderer extends \theme_boost\output\core_renderer {
                 $category = \coursecat::get($this->get_current_category());
                 if ((!empty($category)) && (array_key_exists($category->name, $categoryicons))) {
                     $toolbox = \theme_ned_boost\toolbox::get_instance();
-                    $headerinfo = array('heading' => $toolbox->getfontawesomemarkup($categoryicons[$category->name][\local_ned_controller\toolbox::$fontawesomekey]).' '.$this->page->heading);
+                    $headerinfo = array('heading' =>
+                        $toolbox->getfontawesomemarkup($categoryicons[$category->name][\local_ned_controller\toolbox::$fontawesomekey]).' '.$this->page->heading
+                    );
                 }
             }
         }
@@ -138,6 +140,27 @@ class core_renderer extends \theme_boost\output\core_renderer {
         }
         if ($acourse) {
             $html .= html_writer::div($this->editing_button(), 'editing-button pull-right');
+
+            $quicklinks = array();
+
+            $manualenrolmentquicklink = $nctoolbox->get_manualenrollment_quicklink($this->page->context, $this->page->course->id);
+            if ($manualenrolmentquicklink) {
+                $icon = $this->pix_icon('t/enrolusers', get_string('quicklinksmanualenrollment', 'local_ned_controller'));
+                $quicklinks[] = html_writer::link($manualenrolmentquicklink, $icon);
+            }
+
+            $courseparticipantsquicklink = $nctoolbox->get_courseparticipants_quicklink($this->page->context, $this->page->course->id);
+            if ($courseparticipantsquicklink) {
+                $icon = $this->pix_icon('t/groups', get_string('quicklinkscourseparticpants', 'local_ned_controller'));
+                $quicklinks[] = html_writer::link($courseparticipantsquicklink, $icon);
+            }
+
+            if (!empty($quicklinks)) {
+                $html .= html_writer::div(html_writer::span('', 'ned-divider'), 'pull-right');
+                foreach ($quicklinks as $quicklink) {
+                    $html .= html_writer::div($quicklink, 'quicklink');
+                }
+            }
         }
         $html .= html_writer::end_div();
 
