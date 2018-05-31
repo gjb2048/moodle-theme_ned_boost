@@ -112,8 +112,8 @@ class core_renderer extends \theme_boost\output\core_renderer {
                 $category = \coursecat::get($this->get_current_category());
                 if ((!empty($category)) && (array_key_exists($category->name, $categoryicons))) {
                     $toolbox = \theme_ned_boost\toolbox::get_instance();
-                    $headerinfo = array('heading' =>
-                        $toolbox->getfontawesomemarkup($categoryicons[$category->name][\local_ned_controller\toolbox::$fontawesomekey]).' '.$this->page->heading
+                    $headerinfo = array('heading' => $toolbox->getfontawesomemarkup(
+                        $categoryicons[$category->name][\local_ned_controller\toolbox::$fontawesomekey]).' '.$this->page->heading
                     );
                 }
             }
