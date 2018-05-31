@@ -1,5 +1,8 @@
 Version Information
 ===================
+Version 3.3.0.1.49
+  1. Changes to quick links - https://www.screencast.com/t/eZANc4G9Kt.
+
 Version 3.3.0.1.48
   1. Add quick links - https://www.screencast.com/t/hcuk2Y5VT.
 

@@ -25,13 +25,14 @@
 .context-header-settings-menu {
     background-color: #5a5a5a;
     border-radius: 4px;
-    height: 34px;
-    margin-top: 0;
+    height: 33px;
+    margin-top: 1px;
     padding: 4px;
     .dropdown-toggle {
         color: #eee;
         .icon {
             color: inherit;
+            margin-right: 0;
         }
     }
 }
