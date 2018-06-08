@@ -110,7 +110,7 @@ $THEME->rendererfactory = 'theme_overridden_renderer_factory';
 $THEME->extrascsscallback = 'theme_ned_boost_get_extra_scss';
 $THEME->prescsscallback = 'theme_ned_boost_get_pre_scss';
 
-$THEME->addblockposition = BLOCK_ADDBLOCK_POSITION_FLATNAV;
+$THEME->addblockposition = BLOCK_ADDBLOCK_POSITION_DEFAULT;
 
 $THEME->enable_dock = false;
 $THEME->yuicssmodules = array();

@@ -1,5 +1,8 @@
 Version Information
 ===================
+Version 3.3.0.1.51
+  1. Change to 'add block' position - https://www.screencast.com/t/hpSrPruNyWOF.
+
 Version 3.3.0.1.50
   1. Changes to quick links - https://www.screencast.com/t/QHOGDDAXnqlM.
 
