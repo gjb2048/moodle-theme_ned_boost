@@ -1,5 +1,8 @@
 Version Information
 ===================
+Version 3.3.0.1.53
+  1. Course name menu - https://www.screencast.com/t/TGHp04HZwR3b.
+
 Version 3.3.0.1.52
   1. Course name menu - https://www.screencast.com/t/TGHp04HZwR3b - work in progress.
 

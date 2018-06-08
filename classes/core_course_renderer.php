@@ -187,19 +187,41 @@ class theme_ned_boost_core_course_renderer extends core_course_renderer {
         //$menu->set_alignment(action_menu::TL, action_menu::BL);
         $menu->attributessecondary['class'] .= ' nedcoursename';
 
-        //$menu->add_secondary_action(new action_link(new moodle_url('/course/view.php', array('id' => 4)), 'Test', null, null, new pix_icon('t/backpack', 'Backpack')));
         $coursecontext = context_course::instance($course->id);
-        //$editsettingsquicklink = self::$nctoolbox->get_editsettings_quicklink($this->page->context->get_course_context(false), $course->id, 'coursename');
         $editsettingsquicklink = self::$nctoolbox->get_editsettings_quicklink($coursecontext, $course->id, 'coursename');
         if ($editsettingsquicklink) {
             $menuitemstring = get_string('editsettings');
             $menu->add_secondary_action(new action_link($editsettingsquicklink, $menuitemstring, null, null, new pix_icon('t/edit', $menuitemstring)));
         }
 
-        $manualenrolmentquicklink = self::$nctoolbox->get_manualenrollment_quicklink($this->page->context, $course->id, 'coursename');
+        $courseparticipantsquicklink = self::$nctoolbox->get_courseparticipants_quicklink($coursecontext, $course->id, 'coursename');
+        if ($courseparticipantsquicklink) {
+            $menuitemstring = get_string('quicklinkscourseparticpants', 'local_ned_controller');
+            $menu->add_secondary_action(new action_link($courseparticipantsquicklink, $menuitemstring, null, null, new pix_icon('t/groups', $menuitemstring)));
+        }
+
+        $manualenrolmentquicklink = self::$nctoolbox->get_manualenrollment_quicklink($coursecontext, $course->id, 'coursename');
         if ($manualenrolmentquicklink) {
-            $menuitemstring = get_string('quicklinksmanualenrollment', 'local_ned_controller');
+            $menuitemstring = get_string('quicklinksmanualenrollments', 'local_ned_controller');
             $menu->add_secondary_action(new action_link($manualenrolmentquicklink, $menuitemstring, null, null, new pix_icon('t/enrolusers', $menuitemstring)));
+        }
+
+        $nedprogressreportquicklink = self::$nctoolbox->get_nedprogressreport_quicklink($coursecontext, $course->id, 'coursename');
+        if ($nedprogressreportquicklink) {
+            $menuitemstring = get_string('quicklinksnedprogressreport', 'local_ned_controller');
+            $menu->add_secondary_action(new action_link($nedprogressreportquicklink, $menuitemstring, null, null, new pix_icon('i/grades', $menuitemstring)));
+        }
+
+        $nedmarkingmanagerquicklink = self::$nctoolbox->get_nedmarkingmanager_quicklink($coursecontext, $course->id, 'coursename');
+        if ($nedmarkingmanagerquicklink) {
+            $menuitemstring = get_string('quicklinksnedmarkingmanager', 'local_ned_controller');
+            $menu->add_secondary_action(new action_link($nedmarkingmanagerquicklink, $menuitemstring, null, null, new pix_icon('i/competencies', $menuitemstring)));
+        }
+
+        $gradebookquicklink = self::$nctoolbox->get_gradebook_quicklink($coursecontext, $course->id, 'coursename');
+        if ($gradebookquicklink) {
+            $menuitemstring = get_string('quicklinksgradebook', 'local_ned_controller');
+            $menu->add_secondary_action(new action_link($gradebookquicklink, $menuitemstring, null, null, new pix_icon('i/report', $menuitemstring)));
         }
 
         $menu->set_menu_trigger(' ');
