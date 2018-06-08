@@ -184,7 +184,6 @@ class theme_ned_boost_core_course_renderer extends core_course_renderer {
 
         // Begin NED Boost specific changes.
         $menu = new action_menu();
-        //$menu->set_alignment(action_menu::TL, action_menu::BL);
         $menu->attributessecondary['class'] .= ' nedcoursename';
 
         $coursecontext = context_course::instance($course->id);
@@ -244,8 +243,8 @@ class theme_ned_boost_core_course_renderer extends core_course_renderer {
         // Print enrolmenticons.
         if ($icons = enrol_get_course_info_icons($course)) {
             $content .= html_writer::start_tag('div', array('class' => 'enrolmenticons'));
-            foreach ($icons as $pix_icon) {
-                $content .= $this->render($pix_icon);
+            foreach ($icons as $pixicon) {
+                $content .= $this->render($pixicon);
             }
             $content .= html_writer::end_tag('div'); // .enrolmenticons
         }
