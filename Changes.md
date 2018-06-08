@@ -1,5 +1,8 @@
 Version Information
 ===================
+Version 3.3.0.1.52
+  1. Course name menu - https://www.screencast.com/t/TGHp04HZwR3b - work in progress.
+
 Version 3.3.0.1.51
   1. Change to 'add block' position - https://www.screencast.com/t/hpSrPruNyWOF.
 
