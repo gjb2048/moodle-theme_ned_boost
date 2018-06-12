@@ -477,8 +477,8 @@ class core_renderer extends \theme_boost\output\core_renderer {
     public function get_frontdashboard_context() {
         global $CFG;
 
-        if (!empty($this->page->theme->settings->frontpagedashboardburgerbutton)) {
-            switch ($this->page->theme->settings->frontpagedashboardburgerbutton) {
+        if (!empty($this->page->theme->settings->frontpagedashboardhamburgerbutton)) {
+            switch ($this->page->theme->settings->frontpagedashboardhamburgerbutton) {
                 case 1: // Show.
                     $shownavdrawer = true;
                     break;

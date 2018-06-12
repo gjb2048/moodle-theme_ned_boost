@@ -1,5 +1,8 @@
 Version Information
 ===================
+Version 3.3.0.1.54
+  1. Fix 'frontpagedashboardhamburgerbutton' setting - https://www.screencast.com/t/g2RO2rPr53.
+
 Version 3.3.0.1.53
   1. Course name menu - https://www.screencast.com/t/TGHp04HZwR3b.
 
