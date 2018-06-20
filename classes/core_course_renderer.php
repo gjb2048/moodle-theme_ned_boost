@@ -28,6 +28,7 @@ defined('MOODLE_INTERNAL') || die;
 
 class theme_ned_boost_core_course_renderer extends core_course_renderer {
     private static $nctoolbox = null;
+    private static $nedboostcoursenameactionmenujs = false;
     private static $themesettings = null;
     private $editingoff;
 
@@ -225,6 +226,11 @@ class theme_ned_boost_core_course_renderer extends core_course_renderer {
 
         $menu->set_menu_trigger(' ');
         $content .= $OUTPUT->render($menu);
+        if (empty(self::$nedboostcoursenameactionmenujs)) {
+            global $PAGE;
+            $PAGE->requires->js_call_amd('theme_ned_boost/ned_boost_course_name_action_menu', 'init');
+            self::$nedboostcoursenameactionmenujs = true;
+        }
         // End NED Boost specific changes.
 
         // If we display course in collapsed form but the course has summary or course contacts, display the link to the info page.

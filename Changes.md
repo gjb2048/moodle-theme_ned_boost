@@ -1,7 +1,8 @@
 Version Information
 ===================
 Version 3.3.0.1.55
-  1. Change icon - https://www.screencast.com/t/6wryEOVz.
+  1. Change icon - https://www.screencast.com/t/6wryEOVz - work in progres.
+  2. Open links in 800 by 600 popup window - https://www.screencast.com/t/WStpUOtqNucc.
 
 Version 3.3.0.1.54
   1. Fix 'frontpagedashboardhamburgerbutton' setting - https://www.screencast.com/t/g2RO2rPr53.
