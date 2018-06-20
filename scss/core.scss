@@ -9,3 +9,12 @@
     min-width: 210px;
     top: 100%;
 }
+
+.action-menu .dropdown-toggle i {
+    background-image: url('[[pix:theme|action_menu_trigger_icon_background]]');
+    color: #000;
+}
+
+.action-menu .dropdown-toggle:after {
+    border-width: 0;
+}
