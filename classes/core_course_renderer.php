@@ -184,7 +184,7 @@ class theme_ned_boost_core_course_renderer extends core_course_renderer {
         $content .= html_writer::tag($nametag, $coursenamelink, array('class' => 'coursename'));
 
         // Begin NED Boost specific changes.
-        $menu = new action_menu();
+        $menu = new \theme_ned_boost\ned_action_menu();
         $menu->attributessecondary['class'] .= ' nedcoursename';
 
         $coursecontext = context_course::instance($course->id);

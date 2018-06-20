@@ -15,9 +15,9 @@
     along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 }}
 {{!
-    @template core/action_menu_trigger
+    @template theme_ned_boost/ned_action_menu_trigger
 
-    Action menu trigger.
+    NED action menu trigger.
 
     Example context (json):
     {
@@ -78,7 +78,7 @@
     }
 }}
 <div class="dropdown d-inline">
-    <a href="#" class="{{triggerextraclasses}} dropdown-toggle" id="dropdown-{{instance}}" title="{{title}}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{{actiontext}}}{{{menutrigger}}}{{#icon}}{{#pix}}{{key}},{{component}},{{title}}{{/pix}}{{/icon}}{{#rawicon}}{{{.}}}{{/rawicon}}{{#menutrigger}}<i class="fa fa-caret-square-o-down"></i>{{/menutrigger}}</a>
+    <a href="#" class="{{triggerextraclasses}} nedactiontrigger dropdown-toggle" id="dropdown-{{instance}}" title="{{title}}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{{actiontext}}}{{{menutrigger}}}{{#icon}}{{#pix}}{{key}},{{component}},{{title}}{{/pix}}{{/icon}}{{#rawicon}}{{{.}}}{{/rawicon}}{{#menutrigger}}<i class="fa fa-caret-square-o-down"></i>{{/menutrigger}}</a>
     {{#secondary}}
         <div class="dropdown-menu dropdown-menu-right {{classes}}"{{#attributes}} {{name}}="{{value}}"{{/attributes}}>
             {{#items}}{{!

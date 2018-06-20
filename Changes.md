@@ -1,7 +1,10 @@
 Version Information
 ===================
+Version 3.3.0.1.56
+  1. Change icon - https://www.screencast.com/t/6wryEOVz.
+
 Version 3.3.0.1.55
-  1. Change icon - https://www.screencast.com/t/6wryEOVz - work in progres.
+  1. Change icon - https://www.screencast.com/t/6wryEOVz - work in progress.
   2. Open links in 800 by 600 popup window - https://www.screencast.com/t/WStpUOtqNucc.
 
 Version 3.3.0.1.54

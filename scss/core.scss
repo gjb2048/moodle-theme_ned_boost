@@ -10,11 +10,11 @@
     top: 100%;
 }
 
-.action-menu .dropdown-toggle i {
+.action-menu .dropdown-toggle.nedactiontrigger i {
     background-image: url('[[pix:theme|action_menu_trigger_icon_background]]');
     color: #000;
 }
 
-.action-menu .dropdown-toggle:after {
+.action-menu .dropdown-toggle.nedactiontrigger:after {
     border-width: 0;
 }

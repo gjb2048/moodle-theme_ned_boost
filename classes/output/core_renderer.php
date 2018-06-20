@@ -668,4 +668,19 @@ class core_renderer extends \theme_boost\output\core_renderer {
         $renderer = $this->page->get_renderer('core', 'course');
         return $renderer->render($activitynav);
     }
+
+    /**
+     * Renders an action menu component.
+     *
+     * ARIA references:
+     *   - http://www.w3.org/WAI/GL/wiki/Using_ARIA_menus
+     *   - http://stackoverflow.com/questions/12279113/recommended-wai-aria-implementation-for-navigation-bar-menu
+     *
+     * @param theme_ned_boost\ned_action_menu $menu
+     * @return string HTML
+     */
+    public function render_ned_action_menu(\theme_ned_boost\ned_action_menu $menu) {
+        $context = $menu->export_for_template($this);
+        return $this->render_from_template('theme_ned_boost/ned_action_menu', $context);
+    }
 }
