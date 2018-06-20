@@ -1,0 +1,24 @@
+// Forms.
+.nedcoursesearchbox {
+    position: relative;
+    #shortsearchbox {
+        border: 1px solid rgba(0, 0, 0, .15);
+        @include border-radius(.25rem);
+        height: 29px;
+        vertical-align: bottom;
+        &:focus + label {
+            display: none;
+        }
+    }
+    label {
+        color: #999;
+        left: 3px;
+        margin-bottom: 0;
+        position: absolute;
+        top: 4px;
+    }
+    .btn {
+        margin-left: 4px;
+        padding: 5px;
+    }
+}

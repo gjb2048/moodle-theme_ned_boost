@@ -1,5 +1,8 @@
 Version Information
 ===================
+Version 3.3.0.1.57
+  1. Changes to My Courses section on frontpage - https://www.screencast.com/t/bmHxFS4i.
+
 Version 3.3.0.1.56
   1. Change icon - https://www.screencast.com/t/6wryEOVz.
 
