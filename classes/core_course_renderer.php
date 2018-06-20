@@ -50,7 +50,7 @@ class theme_ned_boost_core_course_renderer extends core_course_renderer {
      * @param string $format display format - 'plain' (default), 'short' or 'navbar'
      * @return string
      */
-    function course_search_form($value = '', $format = 'plain') {
+    public function course_search_form($value = '', $format = 'plain') {
         static $count = 0;
         $formid = 'coursesearch';
         if ((++$count) > 1) {
